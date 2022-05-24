@@ -10,10 +10,10 @@
 
 using namespace Ishiko;
 
-Buffer::Buffer(size_t size)
-    : m_size(size)
+Buffer::Buffer(size_t capacity)
+    : m_capacity(capacity)
 {
-    m_data = reinterpret_cast<Byte*>(malloc(size));
+    m_data = reinterpret_cast<Byte*>(malloc(capacity));
     // TODO: handle malloc error
 }
 
@@ -24,7 +24,7 @@ Buffer::~Buffer()
 
 void Buffer::zero() noexcept
 {
-    memset(m_data, 0, m_size);
+    memset(m_data, 0, m_capacity);
 }
 
 Byte* Buffer::data() noexcept
@@ -32,7 +32,7 @@ Byte* Buffer::data() noexcept
     return m_data;
 }
 
-size_t Buffer::size() noexcept
+size_t Buffer::capacity() noexcept
 {
-    return m_size;
+    return m_capacity;
 }
