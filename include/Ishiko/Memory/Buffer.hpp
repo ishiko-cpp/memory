@@ -8,6 +8,7 @@
 #define _ISHIKO_CPP_MEMORY_BUFFER_HPP_
 
 #include "Byte.hpp"
+#include <cstddef>
 
 namespace Ishiko
 {
