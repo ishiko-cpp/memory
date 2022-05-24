@@ -20,7 +20,7 @@ void BufferTests::ConstructorTest1(Test& test)
 {
     Buffer buffer(10);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(buffer.size(), 10);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.capacity(), 10);
     ISHIKO_TEST_PASS();
 }
 
@@ -30,9 +30,9 @@ void BufferTests::ZeroTest1(Test& test)
 
     buffer.zero();
 
-    ISHIKO_TEST_ABORT_IF_NEQ(buffer.size(), 10);
+    ISHIKO_TEST_ABORT_IF_NEQ(buffer.capacity(), 10);
     
-    for (size_t i = 0; i < buffer.size(); ++i)
+    for (size_t i = 0; i < buffer.capacity(); ++i)
     {
         ISHIKO_TEST_FAIL_IF_NEQ(buffer.data()[i], 0);
     }
