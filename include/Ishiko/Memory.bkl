@@ -1,0 +1,20 @@
+setting ISHIKO_CPP_MEMORY_ROOT
+{
+    help = "Path to the Ishiko/C++ Memory installation";
+    default = '$(ISHIKO_CPP)/memory';
+}
+
+template IshikoMemory
+{
+    includedirs += $(ISHIKO_CPP_MEMORY_ROOT)/include;
+
+    if ($(toolset) == gnu)
+    {
+        libdirs += $(ISHIKO_CPP_MEMORY_ROOT)/lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        libdirs += $(ISHIKO_CPP_MEMORY_ROOT)/lib/$(arch);
+    }
+}
