@@ -8,6 +8,7 @@
 #define _ISHIKO_CPP_MEMORY_HPP_
 
 #include "Memory/Buffer.hpp"
+#include "Memory/Byte.hpp"
 #include "Memory/linkoptions.hpp"
 
 #endif

@@ -7,6 +7,9 @@
 #ifndef _ISHIKO_CPP_MEMORY_BUFFER_HPP_
 #define _ISHIKO_CPP_MEMORY_BUFFER_HPP_
 
+#include "Byte.hpp"
+#include <cstddef>
+
 namespace Ishiko
 {
 
@@ -14,6 +17,19 @@ namespace Ishiko
 // a memcpy or similar operations.
 class Buffer
 {
+public:
+    // TODO: size must be > 0
+    Buffer(size_t size);
+    ~Buffer();
+
+    void zero() noexcept;
+
+    Byte* data() noexcept;
+    size_t size() noexcept;
+
+private:
+    Byte* m_data;
+    size_t m_size;
 };
 
 }
