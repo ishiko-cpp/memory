@@ -6,6 +6,7 @@
 
 #include "Buffer.hpp"
 #include <cstdlib>
+#include <cstring>
 
 using namespace Ishiko;
 
@@ -19,6 +20,11 @@ Buffer::Buffer(size_t size)
 Buffer::~Buffer()
 {
     free(m_data);
+}
+
+void Buffer::zero() noexcept
+{
+    memset(m_data, 0, m_size);
 }
 
 Byte* Buffer::data() noexcept

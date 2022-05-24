@@ -22,6 +22,8 @@ public:
     Buffer(size_t size);
     ~Buffer();
 
+    void zero() noexcept;
+
     Byte* data() noexcept;
     size_t size() noexcept;
 
