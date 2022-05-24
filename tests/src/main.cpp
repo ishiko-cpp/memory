@@ -5,6 +5,7 @@
 */
 
 #include "BufferTests.hpp"
+#include "Ishiko/Memory/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 
 using namespace Ishiko;

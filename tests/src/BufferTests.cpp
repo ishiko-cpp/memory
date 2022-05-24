@@ -17,7 +17,8 @@ BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
 
 void BufferTests::ConstructorTest1(Test& test)
 {
-    Buffer buffer;
+    Buffer buffer(10);
 
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.size(), 10);
     ISHIKO_TEST_PASS();
 }

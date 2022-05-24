@@ -23,6 +23,9 @@
     <ClInclude Include="..\..\include\Ishiko\Memory\Buffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Memory\Byte.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Memory\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
