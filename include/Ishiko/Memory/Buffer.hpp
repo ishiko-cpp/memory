@@ -19,17 +19,17 @@ class Buffer
 {
 public:
     // TODO: size must be > 0
-    Buffer(size_t size);
+    Buffer(size_t capacity);
     ~Buffer();
 
     void zero() noexcept;
 
     Byte* data() noexcept;
-    size_t size() noexcept;
+    size_t capacity() noexcept;
 
 private:
     Byte* m_data;
-    size_t m_size;
+    size_t m_capacity;
 };
 
 }
