@@ -24,11 +24,13 @@ program IshikoMemoryTests : IshikoMemory, IshikoTestFrameworkCore
     headers
     {
         ../../src/BufferTests.hpp
+        ../../src/FixedBufferTests.hpp
     }
 
     sources
     {
         ../../src/main.cpp
         ../../src/BufferTests.cpp
+        ../../src/FixedBufferTests.cpp
     }
 }

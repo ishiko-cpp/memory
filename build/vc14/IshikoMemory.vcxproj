@@ -156,6 +156,7 @@
     <ClInclude Include="..\..\include\Ishiko\Memory.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Buffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Byte.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\FixedBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\linkoptions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
