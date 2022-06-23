@@ -154,9 +154,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\BufferTests.cpp" />
+    <ClCompile Include="..\..\src\FixedBufferTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\BufferTests.hpp" />
+    <ClInclude Include="..\..\src\FixedBufferTests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

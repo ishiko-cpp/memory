@@ -33,6 +33,7 @@ library IshikoMemory
         ../../include/Ishiko/Memory.hpp
         ../../include/Ishiko/Memory/Buffer.hpp
         ../../include/Ishiko/Memory/Byte.hpp
+        ../../include/Ishiko/Memory/FixedBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
     }
 

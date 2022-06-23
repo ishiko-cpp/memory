@@ -9,6 +9,7 @@
 
 #include "Memory/Buffer.hpp"
 #include "Memory/Byte.hpp"
+#include "Memory/FixedBuffer.hpp"
 #include "Memory/linkoptions.hpp"
 
 #endif
