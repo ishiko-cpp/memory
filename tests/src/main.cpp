@@ -5,6 +5,7 @@
 */
 
 #include "BufferTests.hpp"
+#include "FixedBufferTests.hpp"
 #include "Ishiko/Memory/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 
@@ -16,6 +17,7 @@ int main(int argc, char* argv[])
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<BufferTests>();
+    theTests.append<FixedBufferTests>();
 
     return theTestHarness.run();
 }
