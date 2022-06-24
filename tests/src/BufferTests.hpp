@@ -18,6 +18,7 @@ private:
     static void ConstructorTest1(Ishiko::Test& test);
     static void ZeroTest1(Ishiko::Test& test);
     static void WordAtTest1(Ishiko::Test& test);
+    static void BigEndianWordAtTest1(Ishiko::Test& test);
 };
 
 #endif

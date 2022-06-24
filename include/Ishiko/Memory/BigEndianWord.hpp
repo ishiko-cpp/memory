@@ -27,6 +27,8 @@ public:
 
     inline uint16_t toUint16() const noexcept;
 
+    inline const Byte* asBytes() const noexcept;
+
 private:
     Byte m_bytes[2];
 };
@@ -62,6 +64,11 @@ bool BigEndianWord::operator!=(const BigEndianWord& other) const noexcept
 uint16_t BigEndianWord::toUint16() const noexcept
 {
     return ((m_bytes[0] << 8) + m_bytes[1]);
+}
+
+const Byte* BigEndianWord::asBytes() const noexcept
+{
+    return m_bytes;
 }
 
 }

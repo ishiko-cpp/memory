@@ -27,6 +27,8 @@ public:
 
     inline uint16_t toUint16() const noexcept;
 
+    inline const Byte* asBytes() const noexcept;
+
 private:
     Byte m_bytes[2];
 };
@@ -60,6 +62,11 @@ bool Word::operator!=(const Word& other) const noexcept
 uint16_t Word::toUint16() const noexcept
 {
     return *(reinterpret_cast<const uint16_t*>(m_bytes));
+}
+
+const Byte* Word::asBytes() const noexcept
+{
+    return m_bytes;
 }
 
 }

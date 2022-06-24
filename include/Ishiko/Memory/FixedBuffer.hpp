@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_CPP_MEMORY_FIXEDBUFFER_HPP_
 #define _ISHIKO_CPP_MEMORY_FIXEDBUFFER_HPP_
 
+#include "BigEndianWord.hpp"
 #include "Byte.hpp"
 #include "Word.hpp"
 
@@ -20,6 +21,8 @@ class FixedBuffer
 public:
     void zero() noexcept;
 
+    Byte operator[](size_t pos) const noexcept;
+
     Byte* data() noexcept;
     size_t capacity() noexcept;
 
@@ -27,6 +30,8 @@ public:
 
     Word wordAt(size_t pos) const;
     Word& wordAt(size_t pos);
+    BigEndianWord bigEndianWordAt(size_t pos) const;
+    BigEndianWord& bigEndianWordAt(size_t pos);
 
     bool operator==(const FixedBuffer<N>& other) const noexcept;
     bool operator!=(const FixedBuffer<N>& other) const noexcept;
@@ -39,6 +44,12 @@ template<size_t N>
 void FixedBuffer<N>::zero() noexcept
 {
     memset(m_data, 0, N);
+}
+
+template<size_t N>
+Byte FixedBuffer<N>::operator[](size_t pos) const noexcept
+{
+    return m_data[pos];
 }
 
 template<size_t N>
@@ -71,6 +82,20 @@ Word& FixedBuffer<N>::wordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<Word*>(m_data + pos));
+}
+
+template<size_t N>
+BigEndianWord FixedBuffer<N>::bigEndianWordAt(size_t pos) const
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
+}
+
+template<size_t N>
+BigEndianWord& FixedBuffer<N>::bigEndianWordAt(size_t pos)
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
 }
 
 template<size_t N>

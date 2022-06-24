@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_CPP_MEMORY_BUFFER_HPP_
 #define _ISHIKO_CPP_MEMORY_BUFFER_HPP_
 
+#include "BigEndianWord.hpp"
 #include "Byte.hpp"
 #include "Word.hpp"
 #include <cstddef>
@@ -25,6 +26,8 @@ public:
 
     void zero() noexcept;
 
+    Byte operator[](size_t pos) const noexcept;
+
     Byte* data() noexcept;
     size_t capacity() noexcept;
 
@@ -32,6 +35,8 @@ public:
 
     Word wordAt(size_t pos) const;
     Word& wordAt(size_t pos);
+    BigEndianWord bigEndianWordAt(size_t pos) const;
+    BigEndianWord& bigEndianWordAt(size_t pos);
 
     bool operator==(const Buffer& other) const noexcept;
     bool operator!=(const Buffer& other) const noexcept;

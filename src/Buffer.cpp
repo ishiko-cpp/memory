@@ -27,6 +27,11 @@ void Buffer::zero() noexcept
     memset(m_data, 0, m_capacity);
 }
 
+Byte Buffer::operator[](size_t pos) const noexcept
+{
+    return m_data[pos];
+}
+
 Byte* Buffer::data() noexcept
 {
     return m_data;
@@ -52,6 +57,18 @@ Word& Buffer::wordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<Word*>(m_data + pos));
+}
+
+BigEndianWord Buffer::bigEndianWordAt(size_t pos) const
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
+}
+
+BigEndianWord& Buffer::bigEndianWordAt(size_t pos)
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
 }
 
 bool Buffer::operator==(const Buffer& other) const noexcept
