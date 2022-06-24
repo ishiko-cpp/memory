@@ -15,6 +15,7 @@ FixedBufferTests::FixedBufferTests(const TestNumber& number, const TestContext& 
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("zero test 1", ZeroTest1);
     append<HeapAllocationErrorsTest>("wordAt test 1", WordAtTest1);
+    append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
 }
 
 void FixedBufferTests::ConstructorTest1(Test& test)
@@ -50,6 +51,27 @@ void FixedBufferTests::WordAtTest1(Test& test)
     buffer.wordAt(2) = 255;
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.wordAt(0), 128);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[0], 128);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[1], 0);
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.wordAt(2), 255);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[2], 255);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[3], 0);
+    ISHIKO_TEST_PASS();
+}
+
+void FixedBufferTests::BigEndianWordAtTest1(Test& test)
+{
+    FixedBuffer<10> buffer;
+    buffer.zero();
+
+    buffer.bigEndianWordAt(0) = 128;
+    buffer.bigEndianWordAt(2) = 255;
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.bigEndianWordAt(0), 128);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[0], 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[1], 128);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.bigEndianWordAt(2), 255);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[2], 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[3], 255);
     ISHIKO_TEST_PASS();
 }

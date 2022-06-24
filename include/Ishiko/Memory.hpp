@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_CPP_MEMORY_HPP_
 #define _ISHIKO_CPP_MEMORY_HPP_
 
+#include "Memory/BigEndianWord.hpp"
 #include "Memory/Buffer.hpp"
 #include "Memory/Byte.hpp"
 #include "Memory/FixedBuffer.hpp"
