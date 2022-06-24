@@ -22,6 +22,7 @@ class Buffer
 public:
     // TODO: size must be > 0
     Buffer(size_t capacity);
+    static Buffer From(const Byte* bytes, size_t count);
     ~Buffer();
 
     void zero() noexcept;
