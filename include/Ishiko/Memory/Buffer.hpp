@@ -8,6 +8,7 @@
 #define _ISHIKO_CPP_MEMORY_BUFFER_HPP_
 
 #include "Byte.hpp"
+#include "Word.hpp"
 #include <cstddef>
 
 namespace Ishiko
@@ -26,6 +27,8 @@ public:
 
     Byte* data() noexcept;
     size_t capacity() noexcept;
+
+    Word& wordAt(size_t pos);
 
 private:
     Byte* m_data;

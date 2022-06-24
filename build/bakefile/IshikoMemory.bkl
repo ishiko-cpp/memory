@@ -35,6 +35,7 @@ library IshikoMemory
         ../../include/Ishiko/Memory/Byte.hpp
         ../../include/Ishiko/Memory/FixedBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
+        ../../include/Ishiko/Memory/Word.hpp
     }
 
     sources
