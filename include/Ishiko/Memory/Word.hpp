@@ -18,6 +18,8 @@ class Word
 public:
     inline Word(uint16_t word) noexcept;
 
+    inline Byte operator[](size_t pos) const noexcept;
+
     inline Word& operator=(uint16_t word) noexcept;
 
     inline bool operator==(const Word& other) const noexcept;
@@ -32,6 +34,11 @@ private:
 Word::Word(uint16_t word) noexcept
 {
     *(reinterpret_cast<uint16_t*>(m_bytes)) = word;
+}
+
+Byte Word::operator[](size_t pos) const noexcept
+{
+    return m_bytes[pos];
 }
 
 Word& Word::operator=(uint16_t word) noexcept
