@@ -10,6 +10,7 @@
 #include "BigEndianWord.hpp"
 #include "Byte.hpp"
 #include "Word.hpp"
+#include <cstring>
 
 namespace Ishiko
 {
