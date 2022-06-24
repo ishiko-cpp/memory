@@ -14,7 +14,7 @@
 namespace Ishiko
 {
 
-// TODO: this class is used to store raw bytes. For instance the buffer could be reallocatd and the contents moved with
+// TODO: this class is used to store raw bytes. For instance the buffer could be reallocated and the contents moved with
 // a memcpy or similar operations.
 class Buffer
 {
@@ -28,7 +28,13 @@ public:
     Byte* data() noexcept;
     size_t capacity() noexcept;
 
+    void copyTo(Byte* buffer) const noexcept;
+
+    Word wordAt(size_t pos) const;
     Word& wordAt(size_t pos);
+
+    bool operator==(const Buffer& other) const noexcept;
+    bool operator!=(const Buffer& other) const noexcept;
 
 private:
     Byte* m_data;

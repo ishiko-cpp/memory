@@ -23,7 +23,13 @@ public:
     Byte* data() noexcept;
     size_t capacity() noexcept;
 
+    void copyTo(Byte* buffer) const noexcept;
+
+    Word wordAt(size_t pos) const;
     Word& wordAt(size_t pos);
+
+    bool operator==(const FixedBuffer<N>& other) const noexcept;
+    bool operator!=(const FixedBuffer<N>& other) const noexcept;
 
 private:
     Byte m_data[N];
@@ -48,10 +54,35 @@ size_t FixedBuffer<N>::capacity() noexcept
 }
 
 template<size_t N>
+void FixedBuffer<N>::copyTo(Byte* buffer) const noexcept
+{
+    memcpy(buffer, m_data, N);
+}
+
+template<size_t N>
+Word FixedBuffer<N>::wordAt(size_t pos) const
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<const Word*>(m_data + pos));
+}
+
+template<size_t N>
 Word& FixedBuffer<N>::wordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<Word*>(m_data + pos));
+}
+
+template<size_t N>
+bool FixedBuffer<N>::operator==(const FixedBuffer<N>& other) const noexcept
+{
+    return (memcmp(m_data, other.m_data, N) == 0);
+}
+
+template<size_t N>
+bool FixedBuffer<N>::operator!=(const FixedBuffer<N>& other) const noexcept
+{
+    return (memcmp(m_data, other.m_data, N) != 0);
 }
 
 }

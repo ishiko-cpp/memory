@@ -37,8 +37,43 @@ size_t Buffer::capacity() noexcept
     return m_capacity;
 }
 
+void Buffer::copyTo(Byte* buffer) const noexcept
+{
+    memcpy(buffer, m_data, m_capacity);
+}
+
+Word Buffer::wordAt(size_t pos) const
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<const Word*>(m_data + pos));
+}
+
 Word& Buffer::wordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<Word*>(m_data + pos));
+}
+
+bool Buffer::operator==(const Buffer& other) const noexcept
+{
+    if (m_capacity != other.m_capacity)
+    {
+        return false;
+    }
+    else
+    {
+        return (memcmp(m_data, other.m_data, m_capacity) == 0);
+    }
+}
+
+bool Buffer::operator!=(const Buffer& other) const noexcept
+{
+    if (m_capacity != other.m_capacity)
+    {
+        return true;
+    }
+    else
+    {
+        return (memcmp(m_data, other.m_data, m_capacity) != 0);
+    }
 }
