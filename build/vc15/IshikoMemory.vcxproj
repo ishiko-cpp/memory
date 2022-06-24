@@ -158,6 +158,7 @@
     <ClInclude Include="..\..\include\Ishiko\Memory\Byte.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\FixedBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\Word.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

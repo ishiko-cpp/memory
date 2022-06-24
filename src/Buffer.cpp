@@ -36,3 +36,9 @@ size_t Buffer::capacity() noexcept
 {
     return m_capacity;
 }
+
+Word& Buffer::wordAt(size_t pos)
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<Word*>(m_data + pos));
+}
