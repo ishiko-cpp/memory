@@ -14,6 +14,7 @@ FixedBufferTests::FixedBufferTests(const TestNumber& number, const TestContext& 
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("zero test 1", ZeroTest1);
+    append<HeapAllocationErrorsTest>("wordAt test 1", WordAtTest1);
 }
 
 void FixedBufferTests::ConstructorTest1(Test& test)
@@ -37,5 +38,18 @@ void FixedBufferTests::ZeroTest1(Test& test)
         ISHIKO_TEST_FAIL_IF_NEQ(buffer.data()[i], 0);
     }
 
+    ISHIKO_TEST_PASS();
+}
+
+void FixedBufferTests::WordAtTest1(Test& test)
+{
+    FixedBuffer<10> buffer;
+    buffer.zero();
+
+    buffer.wordAt(0) = 128;
+    buffer.wordAt(2) = 255;
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.wordAt(0), 128);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.wordAt(2), 255);
     ISHIKO_TEST_PASS();
 }

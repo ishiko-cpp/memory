@@ -11,5 +11,6 @@
 #include "Memory/Byte.hpp"
 #include "Memory/FixedBuffer.hpp"
 #include "Memory/linkoptions.hpp"
+#include "Memory/Word.hpp"
 
 #endif

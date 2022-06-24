@@ -8,6 +8,7 @@
 #define _ISHIKO_CPP_MEMORY_FIXEDBUFFER_HPP_
 
 #include "Byte.hpp"
+#include "Word.hpp"
 
 namespace Ishiko
 {
@@ -21,6 +22,8 @@ public:
 
     Byte* data() noexcept;
     size_t capacity() noexcept;
+
+    Word& wordAt(size_t pos);
 
 private:
     Byte m_data[N];
@@ -42,6 +45,13 @@ template<size_t N>
 size_t FixedBuffer<N>::capacity() noexcept
 {
     return N;
+}
+
+template<size_t N>
+Word& FixedBuffer<N>::wordAt(size_t pos)
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<Word*>(m_data + pos));
 }
 
 }
