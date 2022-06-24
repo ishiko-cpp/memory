@@ -9,6 +9,7 @@
 
 #include "Byte.hpp"
 #include <cstdint>
+#include <stddef.h>
 
 namespace Ishiko
 {
