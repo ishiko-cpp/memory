@@ -13,8 +13,15 @@ using namespace Ishiko;
 Buffer::Buffer(size_t capacity)
     : m_capacity(capacity)
 {
-    m_data = reinterpret_cast<Byte*>(malloc(capacity));
+    m_data = reinterpret_cast<Byte*>(malloc(m_capacity));
     // TODO: handle malloc error
+}
+
+Buffer Buffer::From(const Byte* bytes, size_t count)
+{
+    Buffer result(count);
+    memcpy(result.m_data, bytes, count);
+    return result;
 }
 
 Buffer::~Buffer()

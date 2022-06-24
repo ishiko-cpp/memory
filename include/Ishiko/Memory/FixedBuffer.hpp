@@ -19,6 +19,8 @@ template<size_t N>
 class FixedBuffer
 {
 public:
+    static FixedBuffer<N> From(const Byte* bytes);
+
     void zero() noexcept;
 
     Byte operator[](size_t pos) const noexcept;
@@ -39,6 +41,14 @@ public:
 private:
     Byte m_data[N];
 };
+
+template<size_t N>
+FixedBuffer<N> FixedBuffer<N>::From(const Byte* bytes)
+{
+    FixedBuffer<N> result;
+    memcpy(result.m_data, bytes, N);
+    return result;
+}
 
 template<size_t N>
 void FixedBuffer<N>::zero() noexcept
