@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Memory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\BigEndianWord.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Buffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Byte.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\FixedBuffer.hpp" />

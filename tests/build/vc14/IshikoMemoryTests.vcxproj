@@ -152,13 +152,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\BigEndianWordTests.cpp" />
     <ClCompile Include="..\..\src\BufferTests.cpp" />
     <ClCompile Include="..\..\src\FixedBufferTests.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\WordTests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\BigEndianWordTests.hpp" />
     <ClInclude Include="..\..\src\BufferTests.hpp" />
     <ClInclude Include="..\..\src\FixedBufferTests.hpp" />
+    <ClInclude Include="..\..\src\WordTests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
