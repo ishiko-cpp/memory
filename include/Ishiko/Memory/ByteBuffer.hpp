@@ -17,13 +17,13 @@ namespace Ishiko
 
 // TODO: this class is used to store raw bytes. For instance the buffer could be reallocated and the contents moved with
 // a memcpy or similar operations.
-class Buffer
+class ByteBuffer
 {
 public:
     // TODO: size must be > 0
-    Buffer(size_t capacity);
-    static Buffer From(const Byte* bytes, size_t count);
-    ~Buffer();
+    ByteBuffer(size_t capacity);
+    static ByteBuffer From(const Byte* bytes, size_t count);
+    ~ByteBuffer();
 
     void zero() noexcept;
 
@@ -40,8 +40,8 @@ public:
     BigEndianWord bigEndianWordAt(size_t pos) const;
     BigEndianWord& bigEndianWordAt(size_t pos);
 
-    bool operator==(const Buffer& other) const noexcept;
-    bool operator!=(const Buffer& other) const noexcept;
+    bool operator==(const ByteBuffer& other) const noexcept;
+    bool operator!=(const ByteBuffer& other) const noexcept;
 
 private:
     Byte* m_data;

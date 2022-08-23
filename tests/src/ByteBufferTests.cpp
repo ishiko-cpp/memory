@@ -20,7 +20,7 @@ BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
 
 void BufferTests::ConstructorTest1(Test& test)
 {
-    Buffer buffer(10);
+    ByteBuffer buffer(10);
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.capacity(), 10);
     ISHIKO_TEST_PASS();
@@ -28,7 +28,7 @@ void BufferTests::ConstructorTest1(Test& test)
 
 void BufferTests::ZeroTest1(Test& test)
 {
-    Buffer buffer(10);
+    ByteBuffer buffer(10);
 
     buffer.zero();
 
@@ -44,7 +44,7 @@ void BufferTests::ZeroTest1(Test& test)
 
 void BufferTests::WordAtTest1(Test& test)
 {
-    Buffer buffer(10);
+    ByteBuffer buffer(10);
     buffer.zero();
 
     buffer.wordAt(0) = 128;
@@ -61,7 +61,7 @@ void BufferTests::WordAtTest1(Test& test)
 
 void BufferTests::BigEndianWordAtTest1(Test& test)
 {
-    Buffer buffer(10);
+    ByteBuffer buffer(10);
     buffer.zero();
 
     buffer.bigEndianWordAt(0) = 128;
