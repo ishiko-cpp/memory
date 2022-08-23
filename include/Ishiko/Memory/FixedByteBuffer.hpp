@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_MEMORY_FIXEDBUFFER_HPP_
-#define _ISHIKO_CPP_MEMORY_FIXEDBUFFER_HPP_
+#ifndef GUARD_ISHIKO_CPP_MEMORY_FIXEDBYTEBUFFER_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_FIXEDBYTEBUFFER_HPP
 
 #include "BigEndianWord.hpp"
 #include "Byte.hpp"
@@ -17,10 +17,10 @@ namespace Ishiko
 
 // TODO: same as Buffer but fixed size and on the stack
 template<size_t N>
-class FixedBuffer
+class FixedByteBuffer
 {
 public:
-    static FixedBuffer<N> From(const Byte* bytes);
+    static FixedByteBuffer<N> From(const Byte* bytes);
 
     void zero() noexcept;
 
@@ -36,15 +36,15 @@ public:
     BigEndianWord bigEndianWordAt(size_t pos) const;
     BigEndianWord& bigEndianWordAt(size_t pos);
 
-    bool operator==(const FixedBuffer<N>& other) const noexcept;
-    bool operator!=(const FixedBuffer<N>& other) const noexcept;
+    bool operator==(const FixedByteBuffer<N>& other) const noexcept;
+    bool operator!=(const FixedByteBuffer<N>& other) const noexcept;
 
 private:
     Byte m_data[N];
 };
 
 template<size_t N>
-FixedBuffer<N> FixedBuffer<N>::From(const Byte* bytes)
+FixedByteBuffer<N> FixedByteBuffer<N>::From(const Byte* bytes)
 {
     FixedBuffer<N> result;
     memcpy(result.m_data, bytes, N);
@@ -52,71 +52,71 @@ FixedBuffer<N> FixedBuffer<N>::From(const Byte* bytes)
 }
 
 template<size_t N>
-void FixedBuffer<N>::zero() noexcept
+void FixedByteBuffer<N>::zero() noexcept
 {
     memset(m_data, 0, N);
 }
 
 template<size_t N>
-Byte FixedBuffer<N>::operator[](size_t pos) const noexcept
+Byte FixedByteBuffer<N>::operator[](size_t pos) const noexcept
 {
     return m_data[pos];
 }
 
 template<size_t N>
-Byte* FixedBuffer<N>::data() noexcept
+Byte* FixedByteBuffer<N>::data() noexcept
 {
     return m_data;
 }
 
 template<size_t N>
-size_t FixedBuffer<N>::capacity() noexcept
+size_t FixedByteBuffer<N>::capacity() noexcept
 {
     return N;
 }
 
 template<size_t N>
-void FixedBuffer<N>::copyTo(Byte* buffer) const noexcept
+void FixedByteBuffer<N>::copyTo(Byte* buffer) const noexcept
 {
     memcpy(buffer, m_data, N);
 }
 
 template<size_t N>
-Word FixedBuffer<N>::wordAt(size_t pos) const
+Word FixedByteBuffer<N>::wordAt(size_t pos) const
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<const Word*>(m_data + pos));
 }
 
 template<size_t N>
-Word& FixedBuffer<N>::wordAt(size_t pos)
+Word& FixedByteBuffer<N>::wordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<Word*>(m_data + pos));
 }
 
 template<size_t N>
-BigEndianWord FixedBuffer<N>::bigEndianWordAt(size_t pos) const
+BigEndianWord FixedByteBuffer<N>::bigEndianWordAt(size_t pos) const
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
 }
 
 template<size_t N>
-BigEndianWord& FixedBuffer<N>::bigEndianWordAt(size_t pos)
+BigEndianWord& FixedByteBuffer<N>::bigEndianWordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
 }
 
 template<size_t N>
-bool FixedBuffer<N>::operator==(const FixedBuffer<N>& other) const noexcept
+bool FixedByteBuffer<N>::operator==(const FixedByteBuffer<N>& other) const noexcept
 {
     return (memcmp(m_data, other.m_data, N) == 0);
 }
 
 template<size_t N>
-bool FixedBuffer<N>::operator!=(const FixedBuffer<N>& other) const noexcept
+bool FixedByteBuffer<N>::operator!=(const FixedByteBuffer<N>& other) const noexcept
 {
     return (memcmp(m_data, other.m_data, N) != 0);
 }

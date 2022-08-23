@@ -4,81 +4,86 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#include "Buffer.hpp"
+#include "ByteBuffer.hpp"
 #include <cstdlib>
 #include <cstring>
 
 using namespace Ishiko;
 
-Buffer::Buffer(size_t capacity)
+ByteBuffer::ByteBuffer(size_t capacity)
     : m_capacity(capacity)
 {
     m_data = reinterpret_cast<Byte*>(malloc(m_capacity));
     // TODO: handle malloc error
 }
 
-Buffer Buffer::From(const Byte* bytes, size_t count)
+ByteBuffer ByteBuffer::From(const Byte* bytes, size_t count)
 {
-    Buffer result(count);
+    ByteBuffer result(count);
     memcpy(result.m_data, bytes, count);
     return result;
 }
 
-Buffer::~Buffer()
+ByteBuffer::~ByteBuffer()
 {
     free(m_data);
 }
 
-void Buffer::zero() noexcept
+void ByteBuffer::zero() noexcept
 {
     memset(m_data, 0, m_capacity);
 }
 
-Byte Buffer::operator[](size_t pos) const noexcept
+Byte ByteBuffer::operator[](size_t pos) const noexcept
 {
     return m_data[pos];
 }
 
-Byte* Buffer::data() noexcept
+const Byte* ByteBuffer::data() const noexcept
 {
     return m_data;
 }
 
-size_t Buffer::capacity() noexcept
+Byte* ByteBuffer::data() noexcept
+{
+    return m_data;
+}
+
+size_t ByteBuffer::capacity() noexcept
 {
     return m_capacity;
 }
 
-void Buffer::copyTo(Byte* buffer) const noexcept
+void ByteBuffer::copyTo(Byte* buffer) const noexcept
 {
     memcpy(buffer, m_data, m_capacity);
 }
 
-Word Buffer::wordAt(size_t pos) const
+Word ByteBuffer::wordAt(size_t pos) const
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<const Word*>(m_data + pos));
 }
 
-Word& Buffer::wordAt(size_t pos)
+Word& ByteBuffer::wordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<Word*>(m_data + pos));
 }
 
-BigEndianWord Buffer::bigEndianWordAt(size_t pos) const
+BigEndianWord ByteBuffer::bigEndianWordAt(size_t pos) const
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
 }
 
-BigEndianWord& Buffer::bigEndianWordAt(size_t pos)
+BigEndianWord& ByteBuffer::bigEndianWordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
 }
 
-bool Buffer::operator==(const Buffer& other) const noexcept
+bool ByteBuffer::operator==(const ByteBuffer& other) const noexcept
 {
     if (m_capacity != other.m_capacity)
     {
@@ -90,7 +95,7 @@ bool Buffer::operator==(const Buffer& other) const noexcept
     }
 }
 
-bool Buffer::operator!=(const Buffer& other) const noexcept
+bool ByteBuffer::operator!=(const ByteBuffer& other) const noexcept
 {
     if (m_capacity != other.m_capacity)
     {

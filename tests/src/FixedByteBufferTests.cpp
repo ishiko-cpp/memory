@@ -4,13 +4,13 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#include "BufferTests.hpp"
-#include "Ishiko/Memory/Buffer.hpp"
+#include "FixedByteBufferTests.hpp"
+#include "Ishiko/Memory/FixedByteBuffer.hpp"
 
 using namespace Ishiko;
 
-BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "Buffer tests", context)
+FixedBufferTests::FixedBufferTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "FixedBuffer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("zero test 1", ZeroTest1);
@@ -18,22 +18,22 @@ BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
     append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
 }
 
-void BufferTests::ConstructorTest1(Test& test)
+void FixedBufferTests::ConstructorTest1(Test& test)
 {
-    Buffer buffer(10);
+    FixedByteBuffer<10> buffer;
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.capacity(), 10);
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::ZeroTest1(Test& test)
+void FixedBufferTests::ZeroTest1(Test& test)
 {
-    Buffer buffer(10);
+    FixedByteBuffer<10> buffer;
 
     buffer.zero();
 
     ISHIKO_TEST_ABORT_IF_NEQ(buffer.capacity(), 10);
-    
+
     for (size_t i = 0; i < buffer.capacity(); ++i)
     {
         ISHIKO_TEST_FAIL_IF_NEQ(buffer.data()[i], 0);
@@ -42,9 +42,9 @@ void BufferTests::ZeroTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::WordAtTest1(Test& test)
+void FixedBufferTests::WordAtTest1(Test& test)
 {
-    Buffer buffer(10);
+    FixedByteBuffer<10> buffer;
     buffer.zero();
 
     buffer.wordAt(0) = 128;
@@ -59,9 +59,9 @@ void BufferTests::WordAtTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::BigEndianWordAtTest1(Test& test)
+void FixedBufferTests::BigEndianWordAtTest1(Test& test)
 {
-    Buffer buffer(10);
+    FixedByteBuffer<10> buffer;
     buffer.zero();
 
     buffer.bigEndianWordAt(0) = 128;

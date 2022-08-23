@@ -4,15 +4,15 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_MEMORY_TESTS_FIXEDBUFFERTESTS_HPP_
-#define _ISHIKO_CPP_MEMORY_TESTS_FIXEDBUFFERTESTS_HPP_
+#ifndef GUARD_ISHIKO_CPP_MEMORY_TESTS_BYTEBUFFERTESTS_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_TESTS_BYTEBUFFERTESTS_HPP
 
 #include <Ishiko/TestFramework/Core.hpp>
 
-class FixedBufferTests : public Ishiko::TestSequence
+class BufferTests : public Ishiko::TestSequence
 {
 public:
-    FixedBufferTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
+    BufferTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);

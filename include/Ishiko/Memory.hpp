@@ -4,13 +4,13 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_MEMORY_HPP_
-#define _ISHIKO_CPP_MEMORY_HPP_
+#ifndef GUARD_ISHIKO_CPP_MEMORY_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_HPP
 
 #include "Memory/BigEndianWord.hpp"
-#include "Memory/Buffer.hpp"
 #include "Memory/Byte.hpp"
-#include "Memory/FixedBuffer.hpp"
+#include "Memory/ByteBuffer.hpp"
+#include "Memory/FixedByteBuffer.hpp"
 #include "Memory/linkoptions.hpp"
 #include "Memory/Word.hpp"
 

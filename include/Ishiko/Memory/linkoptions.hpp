@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_MEMORY_LINKOPTIONS_HPP_
-#define _ISHIKO_CPP_MEMORY_LINKOPTIONS_HPP_
+#ifndef GUARD_ISHIKO_CPP_MEMORY_LINKOPTIONS_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_LINKOPTIONS_HPP
 
 #ifdef _DEBUG
 #pragma comment(lib, "IshikoMemory-d.lib")

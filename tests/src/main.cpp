@@ -5,8 +5,8 @@
 */
 
 #include "BigEndianWordTests.hpp"
-#include "BufferTests.hpp"
-#include "FixedBufferTests.hpp"
+#include "ByteBufferTests.hpp"
+#include "FixedByteBufferTests.hpp"
 #include "WordTests.hpp"
 #include "Ishiko/Memory/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>

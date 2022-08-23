@@ -32,15 +32,15 @@ library IshikoMemory
     {
         ../../include/Ishiko/Memory.hpp
         ../../include/Ishiko/Memory/BigEndianWord.hpp
-        ../../include/Ishiko/Memory/Buffer.hpp
+        ../../include/Ishiko/Memory/ByteBuffer.hpp
         ../../include/Ishiko/Memory/Byte.hpp
-        ../../include/Ishiko/Memory/FixedBuffer.hpp
+        ../../include/Ishiko/Memory/FixedByteBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
         ../../include/Ishiko/Memory/Word.hpp
     }
 
     sources
     {
-        ../../src/Buffer.cpp
+        ../../src/ByteBuffer.cpp
     }
 }
