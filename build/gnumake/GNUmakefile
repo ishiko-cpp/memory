@@ -56,12 +56,12 @@ $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_er
 endif
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d,IshikoMemory).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d,IshikoMemory).a: $(_builddir)IshikoMemory_Buffer.o
-	$(AR) rc $@ $(_builddir)IshikoMemory_Buffer.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d,IshikoMemory).a: $(_builddir)IshikoMemory_ByteBuffer.o
+	$(AR) rc $@ $(_builddir)IshikoMemory_ByteBuffer.o
 	$(RANLIB) $@
 
-$(_builddir)IshikoMemory_Buffer.o: ../../src/Buffer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Memory -std=c++11 ../../src/Buffer.cpp
+$(_builddir)IshikoMemory_ByteBuffer.o: ../../src/ByteBuffer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Memory -std=c++11 ../../src/ByteBuffer.cpp
 
 clean:
 	rm -f $(_builddir)*.o
