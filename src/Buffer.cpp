@@ -39,6 +39,11 @@ Byte Buffer::operator[](size_t pos) const noexcept
     return m_data[pos];
 }
 
+const Byte* Buffer::data() const noexcept
+{
+    return m_data;
+}
+
 Byte* Buffer::data() noexcept
 {
     return m_data;

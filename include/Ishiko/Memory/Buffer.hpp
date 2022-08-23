@@ -29,6 +29,7 @@ public:
 
     Byte operator[](size_t pos) const noexcept;
 
+    const Byte* data() const noexcept;
     Byte* data() noexcept;
     size_t capacity() noexcept;
 
