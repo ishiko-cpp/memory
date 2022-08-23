@@ -24,16 +24,16 @@ program IshikoMemoryTests : IshikoMemory, IshikoTestFrameworkCore
     headers
     {
         ../../src/BigEndianWordTests.hpp
-        ../../src/BufferTests.hpp
-        ../../src/FixedBufferTests.hpp
+        ../../src/ByteBufferTests.hpp
+        ../../src/FixedByteBufferTests.hpp
         ../../src/WordTests.hpp
     }
 
     sources
     {
         ../../src/BigEndianWordTests.cpp
-        ../../src/BufferTests.cpp
-        ../../src/FixedBufferTests.cpp
+        ../../src/ByteBufferTests.cpp
+        ../../src/FixedByteBufferTests.cpp
         ../../src/main.cpp
         ../../src/WordTests.cpp
     }

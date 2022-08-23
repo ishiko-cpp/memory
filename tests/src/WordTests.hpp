@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_MEMORY_TESTS_WORDTESTS_HPP_
-#define _ISHIKO_CPP_MEMORY_TESTS_WORDTESTS_HPP_
+#ifndef GUARD_ISHIKO_CPP_MEMORY_TESTS_WORDTESTS_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_TESTS_WORDTESTS_HPP
 
 #include <Ishiko/TestFramework/Core.hpp>
 
