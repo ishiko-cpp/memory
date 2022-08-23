@@ -5,6 +5,7 @@
 */
 
 #include "ByteBuffer.hpp"
+#include <algorithm>
 #include <cstdlib>
 #include <cstring>
 
@@ -15,6 +16,47 @@ ByteBuffer::ByteBuffer(size_t capacity)
 {
     m_data = reinterpret_cast<Byte*>(malloc(m_capacity));
     // TODO: handle malloc error
+}
+
+ByteBuffer::ByteBuffer(const ByteBuffer& other)
+    : m_capacity(other.m_capacity)
+{
+    m_data = reinterpret_cast<Byte*>(malloc(m_capacity));
+    // TODO: handle malloc error
+    memcpy(m_data, other.m_data, other.m_capacity);
+}
+
+ByteBuffer::ByteBuffer(ByteBuffer&& other) noexcept
+{
+    std::swap(m_capacity, other.m_capacity);
+    std::swap(m_data, other.m_data);
+}
+
+ByteBuffer& ByteBuffer::operator=(const ByteBuffer& other)
+{
+    if (this != &other)
+    {
+        Byte* temp = reinterpret_cast<Byte*>(malloc(other.m_capacity));
+        if (temp)
+        {
+            free(m_data);
+            m_capacity = other.m_capacity;
+            m_data = temp;
+            memcpy(m_data, other.m_data, other.m_capacity);
+        }
+        else
+        {
+            // TODO: handle malloc error
+        }
+    }
+    return *this;
+}
+
+ByteBuffer& ByteBuffer::operator=(ByteBuffer&& other)
+{
+    std::swap(m_capacity, other.m_capacity);
+    std::swap(m_data, other.m_data);
+    return *this;
 }
 
 ByteBuffer ByteBuffer::From(const Byte* bytes, size_t count)
