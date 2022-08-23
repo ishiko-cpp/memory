@@ -46,7 +46,7 @@ private:
 template<size_t N>
 FixedByteBuffer<N> FixedByteBuffer<N>::From(const Byte* bytes)
 {
-    FixedBuffer<N> result;
+    FixedByteBuffer<N> result;
     memcpy(result.m_data, bytes, N);
     return result;
 }
