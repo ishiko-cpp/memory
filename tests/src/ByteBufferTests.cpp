@@ -13,6 +13,10 @@ BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Buffer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("Copy constructor test 1", CopyConstructorTest1);
+    append<HeapAllocationErrorsTest>("Move constructor test 1", MoveConstructorTest1);
+    append<HeapAllocationErrorsTest>("Copy assignment test 1", CopyAssignmentOperatorTest1);
+    append<HeapAllocationErrorsTest>("Move assignment test 1", MoveAssignmentOperatorTest1);
     append<HeapAllocationErrorsTest>("zero test 1", ZeroTest1);
     append<HeapAllocationErrorsTest>("wordAt test 1", WordAtTest1);
     append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
@@ -20,15 +24,72 @@ BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
 
 void BufferTests::ConstructorTest1(Test& test)
 {
-    ByteBuffer buffer(10);
+    ByteBuffer buffer{10};
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.capacity(), 10);
     ISHIKO_TEST_PASS();
 }
 
+void BufferTests::CopyConstructorTest1(Test& test)
+{
+    ByteBuffer buffer1{10};
+    memcpy(buffer1.data(), "012345678", 10);
+
+    ByteBuffer buffer2{buffer1};
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 10);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer1.data(), "012345678");
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer2.capacity(), 10);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer2.data(), "012345678");
+    ISHIKO_TEST_PASS();
+}
+
+void BufferTests::MoveConstructorTest1(Test& test)
+{
+    ByteBuffer buffer1{10};
+    memcpy(buffer1.data(), "012345678", 10);
+
+    ByteBuffer buffer2{std::move(buffer1)};
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer1.data(), nullptr);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer2.capacity(), 10);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer2.data(), "012345678");
+    ISHIKO_TEST_PASS();
+}
+
+void BufferTests::CopyAssignmentOperatorTest1(Test& test)
+{
+    ByteBuffer buffer1{10};
+    memcpy(buffer1.data(), "012345678", 10);
+
+    ByteBuffer buffer2{5};
+    buffer2 = buffer1;
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 10);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer1.data(), "012345678");
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer2.capacity(), 10);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer2.data(), "012345678");
+    ISHIKO_TEST_PASS();
+}
+
+void BufferTests::MoveAssignmentOperatorTest1(Test& test)
+{
+    ByteBuffer buffer1{10};
+    memcpy(buffer1.data(), "012345678", 10);
+
+    ByteBuffer buffer2{5};
+    buffer2 = std::move(buffer1);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 5);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer2.capacity(), 10);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer2.data(), "012345678");
+    ISHIKO_TEST_PASS();
+}
+
 void BufferTests::ZeroTest1(Test& test)
 {
-    ByteBuffer buffer(10);
+    ByteBuffer buffer{10};
 
     buffer.zero();
 
@@ -44,7 +105,7 @@ void BufferTests::ZeroTest1(Test& test)
 
 void BufferTests::WordAtTest1(Test& test)
 {
-    ByteBuffer buffer(10);
+    ByteBuffer buffer{10};
     buffer.zero();
 
     buffer.wordAt(0) = 128;
@@ -61,7 +122,7 @@ void BufferTests::WordAtTest1(Test& test)
 
 void BufferTests::BigEndianWordAtTest1(Test& test)
 {
-    ByteBuffer buffer(10);
+    ByteBuffer buffer{10};
     buffer.zero();
 
     buffer.bigEndianWordAt(0) = 128;

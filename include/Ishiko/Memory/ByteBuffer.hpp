@@ -22,8 +22,14 @@ class ByteBuffer
 public:
     // TODO: size must be > 0
     ByteBuffer(size_t capacity);
-    static ByteBuffer From(const Byte* bytes, size_t count);
+    ByteBuffer(const ByteBuffer& other);
+    ByteBuffer(ByteBuffer&& other) noexcept;
     ~ByteBuffer();
+
+    ByteBuffer& operator=(const ByteBuffer& other);
+    ByteBuffer& operator=(ByteBuffer&& other);
+
+    static ByteBuffer From(const Byte* bytes, size_t count);
 
     void zero() noexcept;
 
@@ -44,8 +50,8 @@ public:
     bool operator!=(const ByteBuffer& other) const noexcept;
 
 private:
-    Byte* m_data;
-    size_t m_capacity;
+    Byte* m_data{nullptr};
+    size_t m_capacity{0};
 };
 
 }
