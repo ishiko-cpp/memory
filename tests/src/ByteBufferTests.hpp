@@ -16,6 +16,10 @@ public:
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);
+    static void CopyConstructorTest1(Ishiko::Test& test);
+    static void MoveConstructorTest1(Ishiko::Test& test);
+    static void CopyAssignmentOperatorTest1(Ishiko::Test& test);
+    static void MoveAssignmentOperatorTest1(Ishiko::Test& test);
     static void ZeroTest1(Ishiko::Test& test);
     static void WordAtTest1(Ishiko::Test& test);
     static void BigEndianWordAtTest1(Ishiko::Test& test);
