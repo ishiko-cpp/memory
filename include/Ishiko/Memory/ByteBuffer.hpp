@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_MEMORY_BUFFER_HPP_
-#define _ISHIKO_CPP_MEMORY_BUFFER_HPP_
+#ifndef GUARD_ISHIKO_CPP_MEMORY_BYTEBUFFER_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_BYTEBUFFER_HPP
 
 #include "BigEndianWord.hpp"
 #include "Byte.hpp"

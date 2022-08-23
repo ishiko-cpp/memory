@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
 */
 
-#include "Buffer.hpp"
+#include "ByteBuffer.hpp"
 #include <cstdlib>
 #include <cstring>
 
