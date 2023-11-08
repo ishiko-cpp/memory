@@ -1,7 +1,7 @@
 setting ISHIKO_CPP_MEMORY_ROOT
 {
     help = "Path to the Ishiko/C++ Memory installation";
-    default = '$(ISHIKO_CPP)/memory';
+    default = '$(ISHIKO_CPP_ROOT)/memory';
 }
 
 template IshikoMemory
