@@ -1,3 +1,6 @@
+ishikopath = envvar("ISHIKO_CPP_ROOT");
+import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+
 toolsets = gnu vs2022 vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
@@ -7,7 +10,7 @@ vs2017.solutionfile = ../vc15/IshikoMemory.sln;
 vs2015.solutionfile = ../vc14/IshikoMemory.sln;
 vs2013.solutionfile = ../vc12/IshikoMemory.sln;
 
-library IshikoMemory
+library IshikoMemory : IshikoErrors
 {
     archs = x86 x86_64;
 
@@ -34,6 +37,7 @@ library IshikoMemory
         ../../include/Ishiko/Memory.hpp
         ../../include/Ishiko/Memory/BigEndianWord.hpp
         ../../include/Ishiko/Memory/ByteBuffer.hpp
+        ../../include/Ishiko/Memory/ByteBufferPool.hpp
         ../../include/Ishiko/Memory/Byte.hpp
         ../../include/Ishiko/Memory/FixedByteBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
@@ -43,5 +47,6 @@ library IshikoMemory
     sources
     {
         ../../src/ByteBuffer.cpp
+        ../../src/ByteBufferPool.cpp
     }
 }

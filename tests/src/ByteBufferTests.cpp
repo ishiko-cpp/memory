@@ -1,16 +1,13 @@
-/*
-    Copyright (c) 2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2021-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "ByteBufferTests.hpp"
 #include "Ishiko/Memory/ByteBuffer.hpp"
 
 using namespace Ishiko;
 
-BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "Buffer tests", context)
+ByteBufferTests::ByteBufferTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "ByteBuffer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Copy constructor test 1", CopyConstructorTest1);
@@ -22,7 +19,7 @@ BufferTests::BufferTests(const TestNumber& number, const TestContext& context)
     append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
 }
 
-void BufferTests::ConstructorTest1(Test& test)
+void ByteBufferTests::ConstructorTest1(Test& test)
 {
     ByteBuffer buffer{10};
 
@@ -30,7 +27,7 @@ void BufferTests::ConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::CopyConstructorTest1(Test& test)
+void ByteBufferTests::CopyConstructorTest1(Test& test)
 {
     ByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
@@ -44,7 +41,7 @@ void BufferTests::CopyConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::MoveConstructorTest1(Test& test)
+void ByteBufferTests::MoveConstructorTest1(Test& test)
 {
     ByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
@@ -58,7 +55,7 @@ void BufferTests::MoveConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::CopyAssignmentOperatorTest1(Test& test)
+void ByteBufferTests::CopyAssignmentOperatorTest1(Test& test)
 {
     ByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
@@ -73,7 +70,7 @@ void BufferTests::CopyAssignmentOperatorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::MoveAssignmentOperatorTest1(Test& test)
+void ByteBufferTests::MoveAssignmentOperatorTest1(Test& test)
 {
     ByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
@@ -87,7 +84,7 @@ void BufferTests::MoveAssignmentOperatorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::ZeroTest1(Test& test)
+void ByteBufferTests::ZeroTest1(Test& test)
 {
     ByteBuffer buffer{10};
 
@@ -103,7 +100,7 @@ void BufferTests::ZeroTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::WordAtTest1(Test& test)
+void ByteBufferTests::WordAtTest1(Test& test)
 {
     ByteBuffer buffer{10};
     buffer.zero();
@@ -120,7 +117,7 @@ void BufferTests::WordAtTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BufferTests::BigEndianWordAtTest1(Test& test)
+void ByteBufferTests::BigEndianWordAtTest1(Test& test)
 {
     ByteBuffer buffer{10};
     buffer.zero();
