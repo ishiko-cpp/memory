@@ -1,10 +1,8 @@
-/*
-    Copyright (c) 2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2021-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "BigEndianWordTests.hpp"
+#include "ByteBufferPoolTests.hpp"
 #include "ByteBufferTests.hpp"
 #include "FixedByteBufferTests.hpp"
 #include "WordTests.hpp"
@@ -20,7 +18,8 @@ int main(int argc, char* argv[])
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<WordTests>();
     theTests.append<BigEndianWordTests>();
-    theTests.append<BufferTests>();
+    theTests.append<ByteBufferTests>();
+    theTests.append<ByteBufferPoolTests>();
     theTests.append<FixedBufferTests>();
 
     return theTestHarness.run();
