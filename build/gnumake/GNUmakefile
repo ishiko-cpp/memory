@@ -33,6 +33,12 @@ override CXXFLAGS += -O2
 else ifneq (,$(config))
 $(warning Unknown configuration "$(config)")
 endif
+#
+# Additionally, this makefile is customizable with the following
+# settings:
+#
+#      ISHIKO_CPP_BASEPLATFORM_ROOT  Path to the Ishiko/C++ BasePlatform installation
+#      ISHIKO_CPP_ERRORS_ROOT        Path to the Ishiko/C++ Errors installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -54,14 +60,29 @@ _builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(bui
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
+
+# ------------
+# Configurable settings:
+# 
+
+# Path to the Ishiko/C++ BasePlatform installation
+ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP_ROOT)/base-platform
+# Path to the Ishiko/C++ Errors installation
+ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP_ROOT)/errors
+
+# ------------
+
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d,IshikoMemory).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d,IshikoMemory).a: $(_builddir)IshikoMemory_ByteBuffer.o
-	$(AR) rc $@ $(_builddir)IshikoMemory_ByteBuffer.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d,IshikoMemory).a: $(_builddir)IshikoMemory_ByteBuffer.o $(_builddir)IshikoMemory_ByteBufferPool.o
+	$(AR) rc $@ $(_builddir)IshikoMemory_ByteBuffer.o $(_builddir)IshikoMemory_ByteBufferPool.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoMemory_ByteBuffer.o: ../../src/ByteBuffer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Memory -std=c++11 ../../src/ByteBuffer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/ByteBuffer.cpp
+
+$(_builddir)IshikoMemory_ByteBufferPool.o: ../../src/ByteBufferPool.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/ByteBufferPool.cpp
 
 clean:
 	rm -f $(_builddir)*.o

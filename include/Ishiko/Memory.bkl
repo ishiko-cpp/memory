@@ -1,10 +1,13 @@
+ishikopath = envvar("ISHIKO_CPP_ROOT");
+import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+
 setting ISHIKO_CPP_MEMORY_ROOT
 {
     help = "Path to the Ishiko/C++ Memory installation";
     default = '$(ISHIKO_CPP_ROOT)/memory';
 }
 
-template IshikoMemory
+template IshikoMemory : IshikoErrors
 {
     includedirs += $(ISHIKO_CPP_MEMORY_ROOT)/include;
 

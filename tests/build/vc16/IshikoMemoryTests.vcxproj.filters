@@ -20,6 +20,9 @@
     <ClInclude Include="..\..\src\BigEndianWordTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\ByteBufferPoolTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\ByteBufferTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -32,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\BigEndianWordTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ByteBufferPoolTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ByteBufferTests.cpp">
