@@ -34,6 +34,7 @@ library IshikoMemory
         ../../include/Ishiko/Memory.hpp
         ../../include/Ishiko/Memory/BigEndianWord.hpp
         ../../include/Ishiko/Memory/ByteBuffer.hpp
+        ../../include/Ishiko/Memory/ByteBufferPool.hpp
         ../../include/Ishiko/Memory/Byte.hpp
         ../../include/Ishiko/Memory/FixedByteBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
@@ -43,5 +44,6 @@ library IshikoMemory
     sources
     {
         ../../src/ByteBuffer.cpp
+        ../../src/ByteBufferPool.cpp
     }
 }

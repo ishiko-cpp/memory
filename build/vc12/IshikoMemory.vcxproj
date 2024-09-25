@@ -151,11 +151,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ByteBuffer.cpp" />
+    <ClCompile Include="..\..\src\ByteBufferPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Memory.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\BigEndianWord.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\ByteBuffer.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\ByteBufferPool.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Byte.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\FixedByteBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\linkoptions.hpp" />
