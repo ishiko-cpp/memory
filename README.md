@@ -20,8 +20,8 @@ No documentation available as of yet.
 
 None.
 
-# License
+## License
 
-Copyright (c) 2022-2024 Xavier Leclercq\
-Released under the MIT License\
+Copyright (c) 2020-2024 Xavier Leclercq\
+This work is licensed under the Boost Software License 1.0\
 See https://github.com/ishiko-cpp/memory/blob/main/LICENSE.txt
