@@ -25,6 +25,7 @@ program IshikoMemoryTests : IshikoMemory, IshikoTestFrameworkCore
     headers
     {
         ../../src/BigEndianWordTests.hpp
+        ../../src/ByteBufferPoolTests.hpp
         ../../src/ByteBufferTests.hpp
         ../../src/FixedByteBufferTests.hpp
         ../../src/WordTests.hpp
@@ -33,6 +34,7 @@ program IshikoMemoryTests : IshikoMemory, IshikoTestFrameworkCore
     sources
     {
         ../../src/BigEndianWordTests.cpp
+        ../../src/ByteBufferPoolTests.cpp
         ../../src/ByteBufferTests.cpp
         ../../src/FixedByteBufferTests.cpp
         ../../src/main.cpp
