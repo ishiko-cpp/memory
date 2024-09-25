@@ -10,11 +10,24 @@ ByteBufferPoolTests::ByteBufferPoolTests(const TestNumber& number, const TestCon
     : TestSequence(number, "ByteBufferPool tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("acquire test 1", AcquireTest1);
 }
 
 void ByteBufferPoolTests::ConstructorTest1(Test& test)
 {
-    ByteBufferPool buffer_pool;
+    ByteBufferPool buffer_pool{1024};
     
+    ISHIKO_TEST_PASS();
+}
+
+void ByteBufferPoolTests::AcquireTest1(Test& test)
+{
+    ByteBufferPool buffer_pool{1024};
+
+    Error error;
+    std::unique_ptr<ByteBuffer, ByteBufferPool::Deleter> buffer = buffer_pool.acquire(error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer->capacity(), 1024);
     ISHIKO_TEST_PASS();
 }

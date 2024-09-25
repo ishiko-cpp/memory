@@ -12,7 +12,7 @@
 namespace Ishiko
 {
     // TODO: this class is used to store raw bytes. For instance the buffer could be reallocated and the contents moved with
-    // a memcpy or similar operations.
+    // a memcpy or similar operations. In particular no alignment guarantees.
     class ByteBuffer
     {
     public:
@@ -46,8 +46,8 @@ namespace Ishiko
         bool operator!=(const ByteBuffer& other) const noexcept;
 
     private:
-        Byte* m_data{ nullptr };
-        size_t m_capacity{ 0 };
+        Byte* m_data{nullptr};
+        size_t m_capacity{0};
     };
 }
 
