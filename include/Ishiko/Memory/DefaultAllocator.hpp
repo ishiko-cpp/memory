@@ -4,6 +4,7 @@
 #ifndef GUARD_ISHIKO_CPP_MEMORY_DEFAULTALLOCATOR_HPP
 #define GUARD_ISHIKO_CPP_MEMORY_DEFAULTALLOCATOR_HPP
 
+#include "MemoryErrorCategory.hpp"
 #include <Ishiko/Errors.hpp>
 
 namespace Ishiko
@@ -18,7 +19,8 @@ T* Ishiko::NewObject(Error& error, ArgTypes&&... args) noexcept
     T* result = new(std::nothrow) T(std::forward<ArgTypes>(args)...);
     if (result == nullptr)
     {
-
+        Fail(MemoryErrorCategory::Value::memory_allocation_error, "Failed to allocate memory", __FILE__, __LINE__,
+            error);
     }
     return result;
 }
