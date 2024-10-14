@@ -159,6 +159,7 @@
     <ClCompile Include="..\..\src\BigEndianWordTests.cpp" />
     <ClCompile Include="..\..\src\ByteBufferPoolTests.cpp" />
     <ClCompile Include="..\..\src\ByteBufferTests.cpp" />
+    <ClCompile Include="..\..\src\DefaultAllocatorTests.cpp" />
     <ClCompile Include="..\..\src\FixedByteBufferTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\WordTests.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="..\..\src\BigEndianWordTests.hpp" />
     <ClInclude Include="..\..\src\ByteBufferPoolTests.hpp" />
     <ClInclude Include="..\..\src\ByteBufferTests.hpp" />
+    <ClInclude Include="..\..\src\DefaultAllocatorTests.hpp" />
     <ClInclude Include="..\..\src\FixedByteBufferTests.hpp" />
     <ClInclude Include="..\..\src\WordTests.hpp" />
   </ItemGroup>
