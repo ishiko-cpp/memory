@@ -121,7 +121,7 @@ T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
     size_t allocation_size = (size * sizeof(T));
     if (allocation_size == 0)
     {
-        ++allocation_size;
+        allocation_size = sizeof(T);
     }
 
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
