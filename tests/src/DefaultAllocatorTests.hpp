@@ -13,6 +13,7 @@ public:
 
 private:
     static void NewObjectTest1(Ishiko::Test& test);
+    static void NewObjectArrayTest1(Ishiko::Test& test);
 };
 
 #endif

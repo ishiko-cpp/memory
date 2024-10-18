@@ -10,6 +10,7 @@ DefaultAllocatorTests::DefaultAllocatorTests(const TestNumber& number, const Tes
     : TestSequence(number, "DefaultAllocator tests", context)
 {
     append<HeapAllocationErrorsTest>("NewObject test 1", NewObjectTest1);
+    append<HeapAllocationErrorsTest>("NewObjectArray test 1", NewObjectArrayTest1);
 }
 
 void DefaultAllocatorTests::NewObjectTest1(Test& test)
@@ -22,6 +23,19 @@ void DefaultAllocatorTests::NewObjectTest1(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(*pointer, 5);
 
     delete pointer;
+
+    ISHIKO_TEST_PASS();
+}
+
+void DefaultAllocatorTests::NewObjectArrayTest1(Test& test)
+{
+    Error error;
+
+    int* pointer = NewObjectArray<int>(10, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    delete[] pointer;
 
     ISHIKO_TEST_PASS();
 }
