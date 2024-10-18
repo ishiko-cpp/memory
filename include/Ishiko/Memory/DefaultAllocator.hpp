@@ -14,7 +14,13 @@ namespace Ishiko
     T* NewObject(Error& error, ArgTypes&&... args) noexcept;
 
     template<typename T>
+    void DeleteObject(T* ptr) noexcept;
+
+    template<typename T>
     T* NewObjectArray(size_t size, Error& error) noexcept;
+
+    template<typename T>
+    void DeleteObjectArray(T* ptr) noexcept;
 
     template<typename T, typename... ArgTypes>
     T* NewAlignedObject(Error& error, ArgTypes&&... args) noexcept;
@@ -38,6 +44,12 @@ T* Ishiko::NewObject(Error& error, ArgTypes&&... args) noexcept
 }
 
 template<typename T>
+void Ishiko::DeleteObject(T* ptr) noexcept
+{
+    delete ptr;
+}
+
+template<typename T>
 T* Ishiko::NewObjectArray(size_t size, Error& error) noexcept
 {
     static_assert(noexcept(T()));
@@ -49,6 +61,12 @@ T* Ishiko::NewObjectArray(size_t size, Error& error) noexcept
             error);
     }
     return result;
+}
+
+template<typename T>
+void Ishiko::DeleteObjectArray(T* ptr) noexcept
+{
+    delete[] ptr;
 }
 
 template<typename T, typename... ArgTypes>

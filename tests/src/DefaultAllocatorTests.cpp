@@ -23,7 +23,7 @@ void DefaultAllocatorTests::NewObjectTest1(Test& test)
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(*ptr, 5);
 
-    delete ptr;
+    DeleteObject(ptr);
 
     ISHIKO_TEST_PASS();
 }
@@ -36,7 +36,7 @@ void DefaultAllocatorTests::NewObjectArrayTest1(Test& test)
 
     ISHIKO_TEST_FAIL_IF(error);
 
-    delete[] ptr;
+    DeleteObjectArray(ptr);
 
     ISHIKO_TEST_PASS();
 }
