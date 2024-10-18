@@ -118,10 +118,16 @@ T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
 {
     static_assert(noexcept(T()));
 
+    size_t allocation_size = (size * sizeof(T));
+    if (allocation_size == 0)
+    {
+        ++allocation_size;
+    }
+
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    T* allocated_memory = (T*)aligned_alloc(size * sizeof(T), alignof(T));
+    T* allocated_memory = (T*)aligned_alloc(allocation_size, alignof(T));
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
-    T* allocated_memory = (T*)_aligned_malloc(size * sizeof(T), alignof(T));
+    T* allocated_memory = (T*)_aligned_malloc(allocation_size, alignof(T));
 #else
 #error Unsupported or unrecognized compiler
 #endif
