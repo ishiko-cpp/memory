@@ -23,13 +23,13 @@ namespace Ishiko
     void DeleteObjectArray(T* ptr) noexcept;
 
     template<typename T, typename... ArgTypes>
-    T* NewAlignedObject(Error& error, ArgTypes&&... args) noexcept;
+    T* NewAlignedObject(size_t alignment, Error& error, ArgTypes&&... args) noexcept;
 
     template<typename T>
     void DeleteAlignedObject(T* ptr) noexcept;
 
     template<typename T>
-    T* NewAlignedObjectArray(size_t size, Error& error) noexcept;
+    T* NewAlignedObjectArray(size_t alignment, size_t size, Error& error) noexcept;
 
     template<typename T>
     void DeleteAlignedObjectArray(size_t size, T* ptr) noexcept;
@@ -76,14 +76,14 @@ void Ishiko::DeleteObjectArray(T* ptr) noexcept
 }
 
 template<typename T, typename... ArgTypes>
-T* Ishiko::NewAlignedObject(Error& error, ArgTypes&&... args) noexcept
+T* Ishiko::NewAlignedObject(size_t alignment, Error& error, ArgTypes&&... args) noexcept
 {
     static_assert(noexcept(T(std::forward<ArgTypes>(args)...)));
 
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    void* allocated_memory = aligned_alloc(alignof(T), sizeof(T));
+    void* allocated_memory = aligned_alloc(alignment, sizeof(T));
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
-    void* allocated_memory = _aligned_malloc(sizeof(T), alignof(T));
+    void* allocated_memory = _aligned_malloc(sizeof(T), alignment);
 #else
 #error Unsupported or unrecognized compiler
 #endif
@@ -114,7 +114,7 @@ void Ishiko::DeleteAlignedObject(T* ptr) noexcept
 }
 
 template<typename T>
-T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
+T* Ishiko::NewAlignedObjectArray(size_t alignment, size_t size, Error& error) noexcept
 {
     static_assert(noexcept(T()));
 
@@ -125,9 +125,9 @@ T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
     }
 
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    T* allocated_memory = (T*)aligned_alloc(alignof(T), allocation_size);
+    T* allocated_memory = (T*)aligned_alloc(alignment, allocation_size);
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
-    T* allocated_memory = (T*)_aligned_malloc(allocation_size, alignof(T));
+    T* allocated_memory = (T*)_aligned_malloc(allocation_size, alignment);
 #else
 #error Unsupported or unrecognized compiler
 #endif

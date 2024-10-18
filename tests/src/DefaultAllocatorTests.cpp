@@ -103,6 +103,7 @@ void DefaultAllocatorTests::NewObjectArrayTest2(Test& test)
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+
     for (size_t i = 0; i < 1; ++i)
     {
         ISHIKO_TEST_FAIL_IF_NEQ(ptr[i].canary(), 0x98765432);
@@ -149,10 +150,11 @@ void DefaultAllocatorTests::NewAlignedObjectTest1(Test& test)
     Error error;
 
     Events events;
-    MockClass* ptr = NewAlignedObject<MockClass>(error, events);
+    MockClass* ptr = NewAlignedObject<MockClass>(128, error, events);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+    ISHIKO_TEST_FAIL_IF_NEQ(reinterpret_cast<uintptr_t>(ptr) % 128, 0);
     ISHIKO_TEST_FAIL_IF_NEQ(ptr->canary(), 0x98765432);
 
     DeleteAlignedObject(ptr);
@@ -165,10 +167,11 @@ void DefaultAllocatorTests::NewAlignedObjectArrayTest1(Test& test)
 {
     Error error;
 
-    MockClass* ptr = NewAlignedObjectArray<MockClass>(0, error);
+    MockClass* ptr = NewAlignedObjectArray<MockClass>(128, 0, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+    ISHIKO_TEST_FAIL_IF_NEQ(reinterpret_cast<uintptr_t>(ptr) % 128, 0);
 
     DeleteAlignedObjectArray(0, ptr);
 
@@ -180,10 +183,12 @@ void DefaultAllocatorTests::NewAlignedObjectArrayTest2(Test& test)
     Error error;
 
     Events events;
-    MockClass* ptr = NewAlignedObjectArray<MockClass>(1, error);
+    MockClass* ptr = NewAlignedObjectArray<MockClass>(128, 1, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+    ISHIKO_TEST_FAIL_IF_NEQ(reinterpret_cast<uintptr_t>(ptr) % 128, 0);
+
     for (size_t i = 0; i < 1; ++i)
     {
         ISHIKO_TEST_FAIL_IF_NEQ(ptr[i].canary(), 0x98765432);
@@ -205,10 +210,12 @@ void DefaultAllocatorTests::NewAlignedObjectArrayTest3(Test& test)
     Error error;
 
     Events events;
-    MockClass* ptr = NewAlignedObjectArray<MockClass>(10, error);
+    MockClass* ptr = NewAlignedObjectArray<MockClass>(128, 10, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+    ISHIKO_TEST_FAIL_IF_NEQ(reinterpret_cast<uintptr_t>(ptr) % 128, 0);
+
     for (size_t i = 0; i < 10; ++i)
     {
         ISHIKO_TEST_FAIL_IF_NEQ(ptr[i].canary(), 0x98765432);
