@@ -11,6 +11,7 @@ DefaultAllocatorTests::DefaultAllocatorTests(const TestNumber& number, const Tes
 {
     append<HeapAllocationErrorsTest>("NewObject test 1", NewObjectTest1);
     append<HeapAllocationErrorsTest>("NewObjectArray test 1", NewObjectArrayTest1);
+    append<HeapAllocationErrorsTest>("NewAlignedObject test 1", NewAlignedObjectTest1);
 }
 
 void DefaultAllocatorTests::NewObjectTest1(Test& test)
@@ -36,6 +37,20 @@ void DefaultAllocatorTests::NewObjectArrayTest1(Test& test)
     ISHIKO_TEST_FAIL_IF(error);
 
     delete[] pointer;
+
+    ISHIKO_TEST_PASS();
+}
+
+void DefaultAllocatorTests::NewAlignedObjectTest1(Test& test)
+{
+    Error error;
+
+    int* pointer = NewAlignedObject<int>(error, 5);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(*pointer, 5);
+
+    _aligned_free(pointer);
 
     ISHIKO_TEST_PASS();
 }
