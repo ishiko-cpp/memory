@@ -55,8 +55,10 @@ DefaultAllocatorTests::DefaultAllocatorTests(const TestNumber& number, const Tes
 {
     append<HeapAllocationErrorsTest>("NewObject test 1", NewObjectTest1);
     append<HeapAllocationErrorsTest>("NewObjectArray test 1", NewObjectArrayTest1);
+    append<HeapAllocationErrorsTest>("NewObjectArray test 2", NewObjectArrayTest2);
     append<HeapAllocationErrorsTest>("NewAlignedObject test 1", NewAlignedObjectTest1);
     append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 1", NewAlignedObjectArrayTest1);
+    append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 2", NewAlignedObjectArrayTest2);
 }
 
 void DefaultAllocatorTests::NewObjectTest1(Test& test)
@@ -77,6 +79,20 @@ void DefaultAllocatorTests::NewObjectTest1(Test& test)
 }
 
 void DefaultAllocatorTests::NewObjectArrayTest1(Test& test)
+{
+    Error error;
+
+    MockClass* ptr = NewObjectArray<MockClass>(0, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+
+    DeleteObjectArray(ptr);
+
+    ISHIKO_TEST_PASS();
+}
+
+void DefaultAllocatorTests::NewObjectArrayTest2(Test& test)
 {
     Error error;
 
@@ -119,6 +135,20 @@ void DefaultAllocatorTests::NewAlignedObjectTest1(Test& test)
 }
 
 void DefaultAllocatorTests::NewAlignedObjectArrayTest1(Test& test)
+{
+    Error error;
+
+    MockClass* ptr = NewAlignedObjectArray<MockClass>(0, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+
+    DeleteAlignedObjectArray(0, ptr);
+
+    ISHIKO_TEST_PASS();
+}
+
+void DefaultAllocatorTests::NewAlignedObjectArrayTest2(Test& test)
 {
     Error error;
 

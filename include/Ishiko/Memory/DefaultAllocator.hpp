@@ -55,7 +55,6 @@ void Ishiko::DeleteObject(T* ptr) noexcept
     delete ptr;
 }
 
-// TODO: behaviour if size is 0?
 template<typename T>
 T* Ishiko::NewObjectArray(size_t size, Error& error) noexcept
 {
@@ -89,15 +88,13 @@ T* Ishiko::NewAlignedObject(Error& error, ArgTypes&&... args) noexcept
 #error Unsupported or unrecognized compiler
 #endif
 
-    // TODO: check for allocated_memory error
-
-    T* result = new(allocated_memory) T(std::forward<ArgTypes>(args)...);
-    if (result == nullptr)
+    if (allocated_memory == nullptr)
     {
         Fail(MemoryErrorCategory::Value::memory_allocation_error, "Failed to allocate memory", __FILE__, __LINE__,
             error);
     }
-    return result;
+
+    return new(allocated_memory) T(std::forward<ArgTypes>(args)...);
 }
 
 template<typename T>
@@ -116,7 +113,6 @@ void Ishiko::DeleteAlignedObject(T* ptr) noexcept
     }
 }
 
-// TODO: behaviour if size is 0?
 template<typename T>
 T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
 {
@@ -130,14 +126,11 @@ T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
 #error Unsupported or unrecognized compiler
 #endif
 
-    // TODO: check for allocated_memory error
-    /*
-    if (result == nullptr)
+    if (allocated_memory == nullptr)
     {
         Fail(MemoryErrorCategory::Value::memory_allocation_error, "Failed to allocate memory", __FILE__, __LINE__,
             error);
     }
-    */
 
     for (size_t i = 0; i < size; ++i)
     {
