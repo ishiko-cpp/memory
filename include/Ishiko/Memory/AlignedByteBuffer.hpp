@@ -5,6 +5,7 @@
 #define GUARD_ISHIKO_CPP_MEMORY_ALIGNEDBYTEBUFFER_HPP
 
 #include "ByteBuffer.hpp"
+#include "DefaultAllocator.hpp"
 
 namespace Ishiko
 {
