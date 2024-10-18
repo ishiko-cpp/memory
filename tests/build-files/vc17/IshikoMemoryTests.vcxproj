@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\AlignedByteBufferTests.cpp" />
     <ClCompile Include="..\..\src\BigEndianWordTests.cpp" />
     <ClCompile Include="..\..\src\ByteBufferPoolTests.cpp" />
     <ClCompile Include="..\..\src\ByteBufferTests.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="..\..\src\WordTests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\AlignedByteBufferTests.hpp" />
     <ClInclude Include="..\..\src\BigEndianWordTests.hpp" />
     <ClInclude Include="..\..\src\ByteBufferPoolTests.hpp" />
     <ClInclude Include="..\..\src\ByteBufferTests.hpp" />

@@ -34,6 +34,7 @@ library IshikoMemory : IshikoErrors
     headers
     {
         ../../include/Ishiko/Memory.hpp
+        ../../include/Ishiko/Memory/AlignedByteBuffer.hpp
         ../../include/Ishiko/Memory/BigEndianWord.hpp
         ../../include/Ishiko/Memory/ByteBuffer.hpp
         ../../include/Ishiko/Memory/ByteBufferPool.hpp
