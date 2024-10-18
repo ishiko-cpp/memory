@@ -58,7 +58,7 @@ DefaultAllocatorTests::DefaultAllocatorTests(const TestNumber& number, const Tes
     append<HeapAllocationErrorsTest>("NewObjectArray test 2", NewObjectArrayTest2);
     append<HeapAllocationErrorsTest>("NewObjectArray test 3", NewObjectArrayTest3);
     append<HeapAllocationErrorsTest>("NewAlignedObject test 1", NewAlignedObjectTest1);
-    //append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 1", NewAlignedObjectArrayTest1);
+    append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 1", NewAlignedObjectArrayTest1);
     append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 2", NewAlignedObjectArrayTest2);
     append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 3", NewAlignedObjectArrayTest3);
 }

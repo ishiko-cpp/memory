@@ -81,7 +81,7 @@ T* Ishiko::NewAlignedObject(Error& error, ArgTypes&&... args) noexcept
     static_assert(noexcept(T(std::forward<ArgTypes>(args)...)));
 
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    void* allocated_memory = aligned_alloc(sizeof(T), alignof(T));
+    void* allocated_memory = aligned_alloc(alignof(T), sizeof(T));
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
     void* allocated_memory = _aligned_malloc(sizeof(T), alignof(T));
 #else
@@ -125,7 +125,7 @@ T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
     }
 
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    T* allocated_memory = (T*)aligned_alloc(allocation_size, alignof(T));
+    T* allocated_memory = (T*)aligned_alloc(alignof(T), allocation_size);
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
     T* allocated_memory = (T*)_aligned_malloc(allocation_size, alignof(T));
 #else
