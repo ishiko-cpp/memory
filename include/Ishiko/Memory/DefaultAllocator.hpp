@@ -18,6 +18,7 @@ namespace Ishiko
 
     template<typename T, typename... ArgTypes>
     T* NewAlignedObject(Error& error, ArgTypes&&... args) noexcept;
+    inline void DeleteAlignedObject(void* ptr) noexcept;
 }
 
 template<typename T, typename... ArgTypes>
@@ -68,6 +69,17 @@ T* Ishiko::NewAlignedObject(Error& error, ArgTypes&&... args) noexcept
             error);
     }
     return result;
+}
+
+void Ishiko::DeleteAlignedObject(void* ptr) noexcept
+{
+#if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
+    free(ptr);
+#elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
+    _aligned_free(ptr);
+#else
+#error Unsupported or unrecognized compiler
+#endif
 }
 
 #endif

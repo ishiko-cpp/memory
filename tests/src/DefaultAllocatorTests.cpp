@@ -18,12 +18,12 @@ void DefaultAllocatorTests::NewObjectTest1(Test& test)
 {
     Error error;
 
-    int* pointer = NewObject<int>(error, 5);
+    int* ptr = NewObject<int>(error, 5);
 
     ISHIKO_TEST_FAIL_IF(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(*pointer, 5);
+    ISHIKO_TEST_FAIL_IF_NEQ(*ptr, 5);
 
-    delete pointer;
+    delete ptr;
 
     ISHIKO_TEST_PASS();
 }
@@ -32,11 +32,11 @@ void DefaultAllocatorTests::NewObjectArrayTest1(Test& test)
 {
     Error error;
 
-    int* pointer = NewObjectArray<int>(10, error);
+    int* ptr = NewObjectArray<int>(10, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
-    delete[] pointer;
+    delete[] ptr;
 
     ISHIKO_TEST_PASS();
 }
@@ -45,12 +45,12 @@ void DefaultAllocatorTests::NewAlignedObjectTest1(Test& test)
 {
     Error error;
 
-    int* pointer = NewAlignedObject<int>(error, 5);
+    int* ptr = NewAlignedObject<int>(error, 5);
 
     ISHIKO_TEST_FAIL_IF(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(*pointer, 5);
+    ISHIKO_TEST_FAIL_IF_NEQ(*ptr, 5);
 
-    _aligned_free(pointer);
+    DeleteAlignedObject(ptr);
 
     ISHIKO_TEST_PASS();
 }
