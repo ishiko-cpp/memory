@@ -27,6 +27,12 @@ namespace Ishiko
 
     template<typename T>
     void DeleteAlignedObject(T* ptr) noexcept;
+
+    template<typename T>
+    T* NewAlignedObjectArray(size_t size, Error& error) noexcept;
+
+    template<typename T>
+    void DeleteAlignedObjectArray(size_t size, T* ptr) noexcept;
 }
 
 template<typename T, typename... ArgTypes>
@@ -49,6 +55,7 @@ void Ishiko::DeleteObject(T* ptr) noexcept
     delete ptr;
 }
 
+// TODO: behaviour if size is 0?
 template<typename T>
 T* Ishiko::NewObjectArray(size_t size, Error& error) noexcept
 {
@@ -75,14 +82,16 @@ T* Ishiko::NewAlignedObject(Error& error, ArgTypes&&... args) noexcept
     static_assert(noexcept(T(std::forward<ArgTypes>(args)...)));
 
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    void* memory = aligned_alloc(sizeof(T), alignof(T));
+    void* allocated_memory = aligned_alloc(sizeof(T), alignof(T));
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
-    void* memory = _aligned_malloc(sizeof(T), alignof(T));
+    void* allocated_memory = _aligned_malloc(sizeof(T), alignof(T));
 #else
 #error Unsupported or unrecognized compiler
 #endif
 
-    T* result = new(memory) T(std::forward<ArgTypes>(args)...);
+    // TODO: check for allocated_memory error
+
+    T* result = new(allocated_memory) T(std::forward<ArgTypes>(args)...);
     if (result == nullptr)
     {
         Fail(MemoryErrorCategory::Value::memory_allocation_error, "Failed to allocate memory", __FILE__, __LINE__,
@@ -97,6 +106,57 @@ void Ishiko::DeleteAlignedObject(T* ptr) noexcept
     if (ptr)
     {
         ptr->~T();
+#if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
+        free(ptr);
+#elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
+        _aligned_free(ptr);
+#else
+#error Unsupported or unrecognized compiler
+#endif
+    }
+}
+
+// TODO: behaviour if size is 0?
+template<typename T>
+T* Ishiko::NewAlignedObjectArray(size_t size, Error& error) noexcept
+{
+    static_assert(noexcept(T()));
+
+#if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
+    T* allocated_memory = (T*)aligned_alloc(size * sizeof(T), alignof(T));
+#elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
+    T* allocated_memory = (T*)_aligned_malloc(size * sizeof(T), alignof(T));
+#else
+#error Unsupported or unrecognized compiler
+#endif
+
+    // TODO: check for allocated_memory error
+    /*
+    if (result == nullptr)
+    {
+        Fail(MemoryErrorCategory::Value::memory_allocation_error, "Failed to allocate memory", __FILE__, __LINE__,
+            error);
+    }
+    */
+
+    for (size_t i = 0; i < size; ++i)
+    {
+        new(allocated_memory + i) T();
+    }
+
+    return allocated_memory;
+}
+
+
+template<typename T>
+void Ishiko::DeleteAlignedObjectArray(size_t size, T* ptr) noexcept
+{
+    if (ptr)
+    {
+        for (size_t i = 0; i < size; ++i)
+        {
+            ptr[i].~T();
+        }
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
         free(ptr);
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
