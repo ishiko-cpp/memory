@@ -88,7 +88,7 @@ Byte* ByteBuffer::data() noexcept
     return m_data;
 }
 
-size_t ByteBuffer::capacity() noexcept
+size_t ByteBuffer::capacity() const noexcept
 {
     return m_capacity;
 }
@@ -144,4 +144,8 @@ bool ByteBuffer::operator!=(const ByteBuffer& other) const noexcept
     {
         return (memcmp(m_data, other.m_data, m_capacity) != 0);
     }
+}
+
+ByteBuffer::ByteBuffer()
+{
 }
