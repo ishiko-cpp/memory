@@ -56,9 +56,11 @@ DefaultAllocatorTests::DefaultAllocatorTests(const TestNumber& number, const Tes
     append<HeapAllocationErrorsTest>("NewObject test 1", NewObjectTest1);
     append<HeapAllocationErrorsTest>("NewObjectArray test 1", NewObjectArrayTest1);
     append<HeapAllocationErrorsTest>("NewObjectArray test 2", NewObjectArrayTest2);
+    append<HeapAllocationErrorsTest>("NewObjectArray test 3", NewObjectArrayTest3);
     append<HeapAllocationErrorsTest>("NewAlignedObject test 1", NewAlignedObjectTest1);
     //append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 1", NewAlignedObjectArrayTest1);
     append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 2", NewAlignedObjectArrayTest2);
+    append<HeapAllocationErrorsTest>("NewAlignedObjectArray test 3", NewAlignedObjectArrayTest3);
 }
 
 void DefaultAllocatorTests::NewObjectTest1(Test& test)
@@ -93,6 +95,31 @@ void DefaultAllocatorTests::NewObjectArrayTest1(Test& test)
 }
 
 void DefaultAllocatorTests::NewObjectArrayTest2(Test& test)
+{
+    Error error;
+
+    Events events;
+    MockClass* ptr = NewObjectArray<MockClass>(1, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+    for (size_t i = 0; i < 1; ++i)
+    {
+        ISHIKO_TEST_FAIL_IF_NEQ(ptr[i].canary(), 0x98765432);
+    }
+
+    for (size_t i = 0; i < 1; ++i)
+    {
+        ptr[i].setEvents(events);
+    }
+
+    DeleteObjectArray(ptr);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(events.destructor_calls, 1);
+    ISHIKO_TEST_PASS();
+}
+
+void DefaultAllocatorTests::NewObjectArrayTest3(Test& test)
 {
     Error error;
 
@@ -149,6 +176,31 @@ void DefaultAllocatorTests::NewAlignedObjectArrayTest1(Test& test)
 }
 
 void DefaultAllocatorTests::NewAlignedObjectArrayTest2(Test& test)
+{
+    Error error;
+
+    Events events;
+    MockClass* ptr = NewAlignedObjectArray<MockClass>(1, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_EQ(ptr, nullptr);
+    for (size_t i = 0; i < 1; ++i)
+    {
+        ISHIKO_TEST_FAIL_IF_NEQ(ptr[i].canary(), 0x98765432);
+    }
+
+    for (size_t i = 0; i < 1; ++i)
+    {
+        ptr[i].setEvents(events);
+    }
+
+    DeleteAlignedObjectArray(1, ptr);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(events.destructor_calls, 1);
+    ISHIKO_TEST_PASS();
+}
+
+void DefaultAllocatorTests::NewAlignedObjectArrayTest3(Test& test)
 {
     Error error;
 
