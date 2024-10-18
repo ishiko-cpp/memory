@@ -5,6 +5,7 @@
 #define GUARD_ISHIKO_CPP_MEMORY_DEFAULTALLOCATOR_HPP
 
 #include "MemoryErrorCategory.hpp"
+#include <Ishiko/BasePlatform.hpp>
 #include <Ishiko/Errors.hpp>
 
 namespace Ishiko
@@ -52,7 +53,14 @@ T* Ishiko::NewAlignedObject(Error& error, ArgTypes&&... args) noexcept
 {
     static_assert(noexcept(T(std::forward<ArgTypes>(args)...)));
 
+#if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
+    void* memory = aligned_alloc(sizeof(T), alignof(T));
+#elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
     void* memory = _aligned_malloc(sizeof(T), alignof(T));
+#else
+#error Unsupported or unrecognized compiler
+#endif
+
     T* result = new(memory) T(std::forward<ArgTypes>(args)...);
     if (result == nullptr)
     {
