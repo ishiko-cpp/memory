@@ -13,6 +13,13 @@ public:
 
 private:
     static void NewObjectTest1(Ishiko::Test& test);
+    static void NewObjectArrayTest1(Ishiko::Test& test);
+    static void NewObjectArrayTest2(Ishiko::Test& test);
+    static void NewObjectArrayTest3(Ishiko::Test& test);
+    static void NewAlignedObjectTest1(Ishiko::Test& test);
+    static void NewAlignedObjectArrayTest1(Ishiko::Test& test);
+    static void NewAlignedObjectArrayTest2(Ishiko::Test& test);
+    static void NewAlignedObjectArrayTest3(Ishiko::Test& test);
 };
 
 #endif
