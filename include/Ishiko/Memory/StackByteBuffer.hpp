@@ -46,7 +46,7 @@ namespace Ishiko
     template<size_t N>
     StackByteBuffer<N> StackByteBuffer<N>::From(const Byte* bytes)
     {
-        FixedByteBuffer<N> result;
+        StackByteBuffer<N> result;
         memcpy(result.m_data, bytes, N);
         return result;
     }
