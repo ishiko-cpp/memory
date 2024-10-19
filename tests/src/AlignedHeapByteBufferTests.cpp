@@ -1,13 +1,14 @@
 // SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#include "AlignedByteBufferTests.hpp"
-#include "Ishiko/Memory/AlignedByteBuffer.hpp"
+#include "AlignedHeapByteBufferTests.hpp"
+#include "Ishiko/Memory/AlignedHeapByteBuffer.hpp"
+#include "Ishiko/Memory/HeapByteBuffer.hpp"
 
 using namespace Ishiko;
 
-AlignedByteBufferTests::AlignedByteBufferTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "AlignedByteBuffer tests", context)
+AlignedHeapByteBufferTests::AlignedHeapByteBufferTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "AlignedHeapByteBuffer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
@@ -15,21 +16,21 @@ AlignedByteBufferTests::AlignedByteBufferTests(const TestNumber& number, const T
     append<HeapAllocationErrorsTest>("Move constructor test 1", MoveConstructorTest1);
 }
 
-void AlignedByteBufferTests::ConstructorTest1(Test& test)
+void AlignedHeapByteBufferTests::ConstructorTest1(Test& test)
 {
-    AlignedByteBuffer<128> buffer(10);
+    AlignedHeapByteBuffer<128> buffer(10);
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.capacity(), 10);
     ISHIKO_TEST_FAIL_IF_NEQ(reinterpret_cast<uintptr_t>(buffer.data()) % 128, 0);
     ISHIKO_TEST_PASS();
 }
 
-void AlignedByteBufferTests::ConstructorTest2(Test& test)
+void AlignedHeapByteBufferTests::ConstructorTest2(Test& test)
 {
-    ByteBuffer buffer1(10);
+    HeapByteBuffer buffer1(10);
     memcpy(buffer1.data(), "012345678", 10);
 
-    AlignedByteBuffer<128> buffer2(buffer1);
+    AlignedHeapByteBuffer<128> buffer2(buffer1);
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 10);
     ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer1.data(), "012345678");
@@ -39,12 +40,12 @@ void AlignedByteBufferTests::ConstructorTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void AlignedByteBufferTests::CopyConstructorTest1(Test& test)
+void AlignedHeapByteBufferTests::CopyConstructorTest1(Test& test)
 {
-    AlignedByteBuffer<128> buffer1(10);
+    AlignedHeapByteBuffer<128> buffer1(10);
     memcpy(buffer1.data(), "012345678", 10);
 
-    AlignedByteBuffer<128> buffer2(buffer1);
+    AlignedHeapByteBuffer<128> buffer2(buffer1);
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 10);
     ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer1.data(), "012345678");
@@ -54,12 +55,12 @@ void AlignedByteBufferTests::CopyConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void AlignedByteBufferTests::MoveConstructorTest1(Test& test)
+void AlignedHeapByteBufferTests::MoveConstructorTest1(Test& test)
 {
-    AlignedByteBuffer<128> buffer1(10);
+    AlignedHeapByteBuffer<128> buffer1(10);
     memcpy(buffer1.data(), "012345678", 10);
 
-    AlignedByteBuffer<128> buffer2(std::move(buffer1));
+    AlignedHeapByteBuffer<128> buffer2(std::move(buffer1));
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 0);
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.data(), nullptr);
