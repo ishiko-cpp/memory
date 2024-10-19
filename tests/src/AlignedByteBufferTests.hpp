@@ -13,6 +13,7 @@ public:
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);
+    static void CopyConstructorTest1(Ishiko::Test& test);
 };
 
 #endif
