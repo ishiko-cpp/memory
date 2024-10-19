@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#include "AlignedByteBufferTests.hpp"
+#include "AlignedHeapByteBufferTests.hpp"
 #include "BigEndianWordTests.hpp"
 #include "ByteBufferPoolTests.hpp"
-#include "ByteBufferTests.hpp"
 #include "DefaultAllocatorTests.hpp"
 #include "FixedByteBufferTests.hpp"
+#include "HeapByteBufferTests.hpp"
 #include "WordTests.hpp"
 #include "Ishiko/Memory/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
@@ -21,8 +21,8 @@ int main(int argc, char* argv[])
     theTests.append<DefaultAllocatorTests>();
     theTests.append<WordTests>();
     theTests.append<BigEndianWordTests>();
-    theTests.append<ByteBufferTests>();
-    theTests.append<AlignedByteBufferTests>();
+    theTests.append<HeapByteBufferTests>();
+    theTests.append<AlignedHeapByteBufferTests>();
     theTests.append<ByteBufferPoolTests>();
     theTests.append<FixedBufferTests>();
 

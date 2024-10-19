@@ -2,11 +2,12 @@
 // SPDX-License-Identifier: BSL-1.0
 
 #include "ByteBufferPool.hpp"
+#include "HeapByteBuffer.hpp"
 
 using namespace Ishiko;
 
 ByteBufferPool::Deleter::Deleter(ByteBufferPool& pool)
-    : m_pool{pool}
+    : m_pool(pool)
 {
 }
 
@@ -19,10 +20,10 @@ std::unique_ptr<ByteBuffer, ByteBufferPool::Deleter> ByteBufferPool::acquire(Err
 {
     // TODO: this can't throw, fix and set error
     return std::unique_ptr<ByteBuffer, ByteBufferPool::Deleter>(
-        new ByteBuffer{m_default_buffer_capacity}, Deleter{*this});
+        new HeapByteBuffer{m_default_buffer_capacity}, Deleter{*this});
 }
 
 void ByteBufferPool::release(ByteBuffer* buffer) noexcept
 {
-    delete buffer;
+    delete static_cast<HeapByteBuffer*>(buffer);
 }
