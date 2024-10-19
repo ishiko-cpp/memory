@@ -162,10 +162,10 @@
     <ClInclude Include="..\..\include\Ishiko\Memory\ByteBufferPool.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Byte.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\DefaultAllocator.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Memory\FixedByteBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\HeapByteBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\linkoptions.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\MemoryErrorCategory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\StackByteBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Word.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

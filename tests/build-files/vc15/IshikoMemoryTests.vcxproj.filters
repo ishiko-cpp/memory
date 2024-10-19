@@ -29,10 +29,10 @@
     <ClInclude Include="..\..\src\DefaultAllocatorTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\FixedByteBufferTests.hpp">
+    <ClInclude Include="..\..\src\HeapByteBufferTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\HeapByteBufferTests.hpp">
+    <ClInclude Include="..\..\src\StackByteBufferTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\WordTests.hpp">
@@ -52,13 +52,13 @@
     <ClCompile Include="..\..\src\DefaultAllocatorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\FixedByteBufferTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\HeapByteBufferTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\StackByteBufferTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\WordTests.cpp">
