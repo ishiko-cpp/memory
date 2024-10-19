@@ -23,23 +23,23 @@ program IshikoMemoryTests : IshikoMemory, IshikoTestFrameworkCore
 
     headers
     {
-        ../../src/AlignedByteBufferTests.hpp
+        ../../src/AlignedHeapByteBufferTests.hpp
         ../../src/BigEndianWordTests.hpp
         ../../src/ByteBufferPoolTests.hpp
-        ../../src/ByteBufferTests.hpp
         ../../src/DefaultAllocatorTests.hpp
         ../../src/FixedByteBufferTests.hpp
+        ../../src/HeapByteBufferTests.hpp
         ../../src/WordTests.hpp
     }
 
     sources
     {
-        ../../src/AlignedByteBufferTests.cpp
+        ../../src/AlignedHeapByteBufferTests.cpp
         ../../src/BigEndianWordTests.cpp
         ../../src/ByteBufferPoolTests.cpp
-        ../../src/ByteBufferTests.cpp
         ../../src/DefaultAllocatorTests.cpp
         ../../src/FixedByteBufferTests.cpp
+        ../../src/HeapByteBufferTests.cpp
         ../../src/main.cpp
         ../../src/WordTests.cpp
     }

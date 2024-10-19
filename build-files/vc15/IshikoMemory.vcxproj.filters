@@ -20,7 +20,7 @@
     <ClInclude Include="..\..\include\Ishiko\Memory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Memory\AlignedByteBuffer.hpp">
+    <ClInclude Include="..\..\include\Ishiko\Memory\AlignedHeapByteBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Memory\BigEndianWord.hpp">
@@ -41,6 +41,9 @@
     <ClInclude Include="..\..\include\Ishiko\Memory\FixedByteBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Memory\HeapByteBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Memory\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -52,10 +55,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\ByteBuffer.cpp">
+    <ClCompile Include="..\..\src\ByteBufferPool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ByteBufferPool.cpp">
+    <ClCompile Include="..\..\src\HeapByteBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\MemoryErrorCategory.cpp">

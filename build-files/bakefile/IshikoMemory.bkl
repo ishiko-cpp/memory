@@ -34,13 +34,14 @@ library IshikoMemory : IshikoErrors
     headers
     {
         ../../include/Ishiko/Memory.hpp
-        ../../include/Ishiko/Memory/AlignedByteBuffer.hpp
+        ../../include/Ishiko/Memory/AlignedHeapByteBuffer.hpp
         ../../include/Ishiko/Memory/BigEndianWord.hpp
         ../../include/Ishiko/Memory/ByteBuffer.hpp
         ../../include/Ishiko/Memory/ByteBufferPool.hpp
         ../../include/Ishiko/Memory/Byte.hpp
         ../../include/Ishiko/Memory/DefaultAllocator.hpp
         ../../include/Ishiko/Memory/FixedByteBuffer.hpp
+        ../../include/Ishiko/Memory/HeapByteBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
         ../../include/Ishiko/Memory/MemoryErrorCategory.hpp
         ../../include/Ishiko/Memory/Word.hpp
@@ -48,8 +49,8 @@ library IshikoMemory : IshikoErrors
 
     sources
     {
-        ../../src/ByteBuffer.cpp
         ../../src/ByteBufferPool.cpp
+        ../../src/HeapByteBuffer.cpp
         ../../src/MemoryErrorCategory.cpp
     }
 }
