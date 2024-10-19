@@ -15,6 +15,7 @@ private:
     static void ConstructorTest1(Ishiko::Test& test);
     static void ConstructorTest2(Ishiko::Test& test);
     static void CopyConstructorTest1(Ishiko::Test& test);
+    static void MoveConstructorTest1(Ishiko::Test& test);
 };
 
 #endif

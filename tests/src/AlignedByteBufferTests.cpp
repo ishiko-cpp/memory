@@ -12,6 +12,7 @@ AlignedByteBufferTests::AlignedByteBufferTests(const TestNumber& number, const T
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("Copy constructor test 1", CopyConstructorTest1);
+    append<HeapAllocationErrorsTest>("Move constructor test 1", MoveConstructorTest1);
 }
 
 void AlignedByteBufferTests::ConstructorTest1(Test& test)
@@ -47,6 +48,21 @@ void AlignedByteBufferTests::CopyConstructorTest1(Test& test)
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 10);
     ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer1.data(), "012345678");
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer2.capacity(), 10);
+    ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer2.data(), "012345678");
+    ISHIKO_TEST_FAIL_IF_NEQ(reinterpret_cast<uintptr_t>(buffer2.data()) % 128, 0);
+    ISHIKO_TEST_PASS();
+}
+
+void AlignedByteBufferTests::MoveConstructorTest1(Test& test)
+{
+    AlignedByteBuffer<128> buffer1(10);
+    memcpy(buffer1.data(), "012345678", 10);
+
+    AlignedByteBuffer<128> buffer2(std::move(buffer1));
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer1.data(), nullptr);
     ISHIKO_TEST_FAIL_IF_NEQ(buffer2.capacity(), 10);
     ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer2.data(), "012345678");
     ISHIKO_TEST_FAIL_IF_NEQ(reinterpret_cast<uintptr_t>(buffer2.data()) % 128, 0);
