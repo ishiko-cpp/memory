@@ -18,6 +18,7 @@ namespace Ishiko
     public:
         // TODO: size must be > 0
         AlignedByteBuffer(size_t capacity);
+        AlignedByteBuffer(const ByteBuffer& other);
         AlignedByteBuffer(const AlignedByteBuffer& other);
         ~AlignedByteBuffer() noexcept;
 
@@ -34,6 +35,17 @@ Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(size_t capacity)
 
     m_capacity = capacity;
     m_data = NewAlignedObjectArray<Byte>(alignment, capacity, error);
+}
+
+template<size_t alignment>
+Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(const ByteBuffer& other)
+{
+    // TODO: handle errors
+    Error error;
+
+    m_capacity = other.capacity();
+    m_data = NewAlignedObjectArray<Byte>(alignment, m_capacity, error);
+    memcpy(m_data, other.data(), other.capacity());
 }
 
 template<size_t alignment>
