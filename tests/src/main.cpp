@@ -5,8 +5,8 @@
 #include "BigEndianWordTests.hpp"
 #include "ByteBufferPoolTests.hpp"
 #include "DefaultAllocatorTests.hpp"
-#include "FixedByteBufferTests.hpp"
 #include "HeapByteBufferTests.hpp"
+#include "StackByteBufferTests.hpp"
 #include "WordTests.hpp"
 #include "Ishiko/Memory/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     theTests.append<HeapByteBufferTests>();
     theTests.append<AlignedHeapByteBufferTests>();
     theTests.append<ByteBufferPoolTests>();
-    theTests.append<FixedBufferTests>();
+    theTests.append<StackByteBufferTests>();
 
     return theTestHarness.run();
 }

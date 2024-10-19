@@ -9,9 +9,10 @@
 #include "Memory/Byte.hpp"
 #include "Memory/ByteBuffer.hpp"
 #include "Memory/ByteBufferPool.hpp"
+#include "Memory/ByteBufferRef.hpp"
 #include "Memory/DefaultAllocator.hpp"
-#include "Memory/FixedByteBuffer.hpp"
 #include "Memory/HeapByteBuffer.hpp"
+#include "Memory/StackByteBuffer.hpp"
 #include "Memory/linkoptions.hpp"
 #include "Memory/Word.hpp"
 
