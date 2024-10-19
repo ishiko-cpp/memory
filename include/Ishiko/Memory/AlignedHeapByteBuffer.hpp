@@ -13,7 +13,7 @@ namespace Ishiko
     // TODO: this class is used to store raw bytes. For instance the buffer could be reallocated and the contents moved with
     // a memcpy or similar operations.
     template<size_t alignment>
-    class AlignedHeapByteBuffer : private ByteBuffer
+    class AlignedHeapByteBuffer : public ByteBuffer
     {
     public:
         // TODO: size must be > 0
@@ -22,9 +22,6 @@ namespace Ishiko
         AlignedHeapByteBuffer(const AlignedHeapByteBuffer& other);
         AlignedHeapByteBuffer(AlignedHeapByteBuffer&& other) noexcept;
         ~AlignedHeapByteBuffer() noexcept;
-
-        using ByteBuffer::data;
-        using ByteBuffer::capacity;
     };
 }
 

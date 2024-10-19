@@ -68,16 +68,6 @@ HeapByteBuffer::~HeapByteBuffer()
     free(m_data);
 }
 
-void HeapByteBuffer::zero() noexcept
-{
-    memset(m_data, 0, m_capacity);
-}
-
-Byte HeapByteBuffer::operator[](size_t pos) const noexcept
-{
-    return m_data[pos];
-}
-
 void HeapByteBuffer::copyTo(Byte* buffer) const noexcept
 {
     memcpy(buffer, m_data, m_capacity);

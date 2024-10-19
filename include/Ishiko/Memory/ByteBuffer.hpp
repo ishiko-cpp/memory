@@ -4,10 +4,15 @@
 #ifndef GUARD_ISHIKO_CPP_MEMORY_BYTEBUFFER_HPP
 #define GUARD_ISHIKO_CPP_MEMORY_BYTEBUFFER_HPP
 
+/*
 #include "BigEndianWord.hpp"
+*/
 #include "Byte.hpp"
+/*
 #include "Word.hpp"
+*/
 #include <cstddef>
+#include <cstring>
 
 namespace Ishiko
 {
@@ -16,6 +21,7 @@ namespace Ishiko
     class ByteBuffer
     {
     public:
+        /*
         // TODO: size must be > 0
         ByteBuffer(size_t capacity);
         ByteBuffer(const ByteBuffer& other);
@@ -25,16 +31,17 @@ namespace Ishiko
         ByteBuffer& operator=(const ByteBuffer& other);
         ByteBuffer& operator=(ByteBuffer&& other);
 
-        static ByteBuffer From(const Byte* bytes, size_t count);
+        static ByteBuffer From(const Byte* bytes, size_t count);*/
 
-        void zero() noexcept;
+        inline void zero() noexcept;
 
-        Byte operator[](size_t pos) const noexcept;
+        inline Byte operator[](size_t pos) const noexcept;
 
-        const Byte* data() const noexcept;
-        Byte* data() noexcept;
-        size_t capacity() const noexcept;
+        inline const Byte* data() const noexcept;
+        inline Byte* data() noexcept;
+        inline size_t capacity() const noexcept;
 
+        /*
         void copyTo(Byte* buffer) const noexcept;
 
         Word wordAt(size_t pos) const;
@@ -44,13 +51,38 @@ namespace Ishiko
 
         bool operator==(const ByteBuffer& other) const noexcept;
         bool operator!=(const ByteBuffer& other) const noexcept;
-
+        */
     protected:
-        ByteBuffer();
+       // ByteBuffer();
 
         Byte* m_data = nullptr;
         size_t m_capacity = 0;
     };
+}
+
+void Ishiko::ByteBuffer::zero() noexcept
+{
+    memset(m_data, 0, m_capacity);
+}
+
+Ishiko::Byte Ishiko::ByteBuffer::operator[](size_t pos) const noexcept
+{
+    return m_data[pos];
+}
+
+const Ishiko::Byte* Ishiko::ByteBuffer::data() const noexcept
+{
+    return m_data;
+}
+
+Ishiko::Byte* Ishiko::ByteBuffer::data() noexcept
+{
+    return m_data;
+}
+
+size_t Ishiko::ByteBuffer::capacity() const noexcept
+{
+    return m_capacity;
 }
 
 #endif
