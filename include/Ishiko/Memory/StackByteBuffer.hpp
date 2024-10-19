@@ -6,12 +6,14 @@
 
 #include "BigEndianWord.hpp"
 #include "Byte.hpp"
+#include "ByteBufferRef.hpp"
 #include "Word.hpp"
 #include <cstring>
 
 namespace Ishiko
 {
     // TODO: same as Buffer but fixed size and on the stack
+    // TODO: not necessarily on the stack, could be inline in a class but it was the best name I could come up with
     template<size_t N>
     class StackByteBuffer
     {
@@ -34,6 +36,8 @@ namespace Ishiko
 
         bool operator==(const StackByteBuffer<N>& other) const noexcept;
         bool operator!=(const StackByteBuffer<N>& other) const noexcept;
+
+        ByteBufferRef asByteBuffer() noexcept;
 
     private:
         Byte m_data[N];
@@ -115,6 +119,12 @@ namespace Ishiko
     bool StackByteBuffer<N>::operator!=(const StackByteBuffer<N>& other) const noexcept
     {
         return (memcmp(m_data, other.m_data, N) != 0);
+    }
+
+    template<size_t N>
+    ByteBufferRef StackByteBuffer<N>::asByteBuffer() noexcept
+    {
+        return ByteBufferRef(m_data, N);
     }
 }
 

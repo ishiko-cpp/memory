@@ -37,6 +37,7 @@ library IshikoMemory : IshikoErrors
         ../../include/Ishiko/Memory/AlignedHeapByteBuffer.hpp
         ../../include/Ishiko/Memory/BigEndianWord.hpp
         ../../include/Ishiko/Memory/ByteBuffer.hpp
+        ../../include/Ishiko/Memory/ByteBufferRef.hpp
         ../../include/Ishiko/Memory/ByteBufferPool.hpp
         ../../include/Ishiko/Memory/Byte.hpp
         ../../include/Ishiko/Memory/DefaultAllocator.hpp

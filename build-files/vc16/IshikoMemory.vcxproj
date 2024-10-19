@@ -159,6 +159,7 @@
     <ClInclude Include="..\..\include\Ishiko\Memory\AlignedHeapByteBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\BigEndianWord.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\ByteBuffer.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\ByteBufferRef.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\ByteBufferPool.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Byte.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\DefaultAllocator.hpp" />
