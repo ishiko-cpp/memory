@@ -1,13 +1,13 @@
 // SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#include "ByteBufferTests.hpp"
-#include "Ishiko/Memory/ByteBuffer.hpp"
+#include "HeapByteBufferTests.hpp"
+#include "Ishiko/Memory/HeapByteBuffer.hpp"
 
 using namespace Ishiko;
 
-ByteBufferTests::ByteBufferTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "ByteBuffer tests", context)
+HeapByteBufferTests::HeapByteBufferTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "HeapByteBuffer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Copy constructor test 1", CopyConstructorTest1);
@@ -19,20 +19,20 @@ ByteBufferTests::ByteBufferTests(const TestNumber& number, const TestContext& co
     append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
 }
 
-void ByteBufferTests::ConstructorTest1(Test& test)
+void HeapByteBufferTests::ConstructorTest1(Test& test)
 {
-    ByteBuffer buffer{10};
+    HeapByteBuffer buffer{10};
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.capacity(), 10);
     ISHIKO_TEST_PASS();
 }
 
-void ByteBufferTests::CopyConstructorTest1(Test& test)
+void HeapByteBufferTests::CopyConstructorTest1(Test& test)
 {
-    ByteBuffer buffer1{10};
+    HeapByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
 
-    ByteBuffer buffer2{buffer1};
+    HeapByteBuffer buffer2{buffer1};
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 10);
     ISHIKO_TEST_FAIL_IF_STR_NEQ((const char*)buffer1.data(), "012345678");
@@ -41,12 +41,12 @@ void ByteBufferTests::CopyConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ByteBufferTests::MoveConstructorTest1(Test& test)
+void HeapByteBufferTests::MoveConstructorTest1(Test& test)
 {
-    ByteBuffer buffer1{10};
+    HeapByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
 
-    ByteBuffer buffer2{std::move(buffer1)};
+    HeapByteBuffer buffer2{std::move(buffer1)};
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 0);
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.data(), nullptr);
@@ -55,12 +55,12 @@ void ByteBufferTests::MoveConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ByteBufferTests::CopyAssignmentOperatorTest1(Test& test)
+void HeapByteBufferTests::CopyAssignmentOperatorTest1(Test& test)
 {
-    ByteBuffer buffer1{10};
+    HeapByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
 
-    ByteBuffer buffer2{5};
+    HeapByteBuffer buffer2{5};
     buffer2 = buffer1;
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 10);
@@ -70,12 +70,12 @@ void ByteBufferTests::CopyAssignmentOperatorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ByteBufferTests::MoveAssignmentOperatorTest1(Test& test)
+void HeapByteBufferTests::MoveAssignmentOperatorTest1(Test& test)
 {
-    ByteBuffer buffer1{10};
+    HeapByteBuffer buffer1{10};
     memcpy(buffer1.data(), "012345678", 10);
 
-    ByteBuffer buffer2{5};
+    HeapByteBuffer buffer2{5};
     buffer2 = std::move(buffer1);
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer1.capacity(), 5);
@@ -84,9 +84,9 @@ void ByteBufferTests::MoveAssignmentOperatorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ByteBufferTests::ZeroTest1(Test& test)
+void HeapByteBufferTests::ZeroTest1(Test& test)
 {
-    ByteBuffer buffer{10};
+    HeapByteBuffer buffer{10};
 
     buffer.zero();
 
@@ -100,9 +100,9 @@ void ByteBufferTests::ZeroTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ByteBufferTests::WordAtTest1(Test& test)
+void HeapByteBufferTests::WordAtTest1(Test& test)
 {
-    ByteBuffer buffer{10};
+    HeapByteBuffer buffer{10};
     buffer.zero();
 
     buffer.wordAt(0) = 128;
@@ -117,9 +117,9 @@ void ByteBufferTests::WordAtTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ByteBufferTests::BigEndianWordAtTest1(Test& test)
+void HeapByteBufferTests::BigEndianWordAtTest1(Test& test)
 {
-    ByteBuffer buffer{10};
+    HeapByteBuffer buffer{10};
     buffer.zero();
 
     buffer.bigEndianWordAt(0) = 128;

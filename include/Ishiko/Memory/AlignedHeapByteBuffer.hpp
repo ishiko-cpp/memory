@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#ifndef GUARD_ISHIKO_CPP_MEMORY_ALIGNEDBYTEBUFFER_HPP
-#define GUARD_ISHIKO_CPP_MEMORY_ALIGNEDBYTEBUFFER_HPP
+#ifndef GUARD_ISHIKO_CPP_MEMORY_ALIGNEDHEAPBYTEBUFFER_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_ALIGNEDHEAPBYTEBUFFER_HPP
 
 #include "ByteBuffer.hpp"
 #include "DefaultAllocator.hpp"
@@ -13,23 +13,20 @@ namespace Ishiko
     // TODO: this class is used to store raw bytes. For instance the buffer could be reallocated and the contents moved with
     // a memcpy or similar operations.
     template<size_t alignment>
-    class AlignedByteBuffer : private ByteBuffer
+    class AlignedHeapByteBuffer : public ByteBuffer
     {
     public:
         // TODO: size must be > 0
-        AlignedByteBuffer(size_t capacity);
-        AlignedByteBuffer(const ByteBuffer& other);
-        AlignedByteBuffer(const AlignedByteBuffer& other);
-        AlignedByteBuffer(AlignedByteBuffer&& other) noexcept;
-        ~AlignedByteBuffer() noexcept;
-
-        using ByteBuffer::data;
-        using ByteBuffer::capacity;
+        AlignedHeapByteBuffer(size_t capacity);
+        AlignedHeapByteBuffer(const ByteBuffer& other);
+        AlignedHeapByteBuffer(const AlignedHeapByteBuffer& other);
+        AlignedHeapByteBuffer(AlignedHeapByteBuffer&& other) noexcept;
+        ~AlignedHeapByteBuffer() noexcept;
     };
 }
 
 template<size_t alignment>
-Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(size_t capacity)
+Ishiko::AlignedHeapByteBuffer<alignment>::AlignedHeapByteBuffer(size_t capacity)
 {
     // TODO: handle errors
     Error error;
@@ -39,7 +36,7 @@ Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(size_t capacity)
 }
 
 template<size_t alignment>
-Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(const ByteBuffer& other)
+Ishiko::AlignedHeapByteBuffer<alignment>::AlignedHeapByteBuffer(const ByteBuffer& other)
 {
     // TODO: handle errors
     Error error;
@@ -50,7 +47,7 @@ Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(const ByteBuffer& other)
 }
 
 template<size_t alignment>
-Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(const AlignedByteBuffer& other)
+Ishiko::AlignedHeapByteBuffer<alignment>::AlignedHeapByteBuffer(const AlignedHeapByteBuffer& other)
 {
     // TODO: handle errors
     Error error;
@@ -61,7 +58,7 @@ Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(const AlignedByteBuffer&
 }
 
 template<size_t alignment>
-Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(AlignedByteBuffer&& other) noexcept
+Ishiko::AlignedHeapByteBuffer<alignment>::AlignedHeapByteBuffer(AlignedHeapByteBuffer&& other) noexcept
 {
     m_capacity = other.m_capacity;
     m_data = other.m_data;
@@ -70,7 +67,7 @@ Ishiko::AlignedByteBuffer<alignment>::AlignedByteBuffer(AlignedByteBuffer&& othe
 }
 
 template<size_t alignment>
-Ishiko::AlignedByteBuffer<alignment>::~AlignedByteBuffer() noexcept
+Ishiko::AlignedHeapByteBuffer<alignment>::~AlignedHeapByteBuffer() noexcept
 {
     DeleteAlignedObjectArray(m_capacity, m_data);
     // Set m_data to null to suppress deletion in the base constructor
