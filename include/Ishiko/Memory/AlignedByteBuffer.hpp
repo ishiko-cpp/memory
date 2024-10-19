@@ -6,6 +6,7 @@
 
 #include "ByteBuffer.hpp"
 #include "DefaultAllocator.hpp"
+#include <cstring>
 
 namespace Ishiko
 {
