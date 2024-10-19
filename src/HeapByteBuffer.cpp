@@ -67,27 +67,3 @@ HeapByteBuffer::~HeapByteBuffer()
 {
     free(m_data);
 }
-
-bool HeapByteBuffer::operator==(const HeapByteBuffer& other) const noexcept
-{
-    if (m_capacity != other.m_capacity)
-    {
-        return false;
-    }
-    else
-    {
-        return (memcmp(m_data, other.m_data, m_capacity) == 0);
-    }
-}
-
-bool HeapByteBuffer::operator!=(const HeapByteBuffer& other) const noexcept
-{
-    if (m_capacity != other.m_capacity)
-    {
-        return true;
-    }
-    else
-    {
-        return (memcmp(m_data, other.m_data, m_capacity) != 0);
-    }
-}

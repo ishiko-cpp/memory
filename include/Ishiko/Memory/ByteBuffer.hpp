@@ -39,10 +39,9 @@ namespace Ishiko
         inline BigEndianWord bigEndianWordAt(size_t pos) const;
         inline BigEndianWord& bigEndianWordAt(size_t pos);
 
-        /*
-        bool operator==(const ByteBuffer& other) const noexcept;
-        bool operator!=(const ByteBuffer& other) const noexcept;
-        */
+        inline bool operator==(const ByteBuffer& other) const noexcept;
+        inline bool operator!=(const ByteBuffer& other) const noexcept;
+
     protected:
         ByteBuffer() noexcept = default;
         ByteBuffer(const ByteBuffer& other) noexcept = default;
@@ -105,6 +104,30 @@ Ishiko::BigEndianWord& Ishiko::ByteBuffer::bigEndianWordAt(size_t pos)
 {
     // TOOD: out of bounds check
     return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
+}
+
+bool Ishiko::ByteBuffer::operator==(const ByteBuffer& other) const noexcept
+{
+    if (m_capacity != other.m_capacity)
+    {
+        return false;
+    }
+    else
+    {
+        return (memcmp(m_data, other.m_data, m_capacity) == 0);
+    }
+}
+
+bool Ishiko::ByteBuffer::operator!=(const ByteBuffer& other) const noexcept
+{
+    if (m_capacity != other.m_capacity)
+    {
+        return true;
+    }
+    else
+    {
+        return (memcmp(m_data, other.m_data, m_capacity) != 0);
+    }
 }
 
 #endif
