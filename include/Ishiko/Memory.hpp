@@ -4,13 +4,14 @@
 #ifndef GUARD_ISHIKO_CPP_MEMORY_HPP
 #define GUARD_ISHIKO_CPP_MEMORY_HPP
 
-#include "Memory/AlignedByteBuffer.hpp"
+#include "Memory/AlignedHeapByteBuffer.hpp"
 #include "Memory/BigEndianWord.hpp"
 #include "Memory/Byte.hpp"
 #include "Memory/ByteBuffer.hpp"
 #include "Memory/ByteBufferPool.hpp"
 #include "Memory/DefaultAllocator.hpp"
 #include "Memory/FixedByteBuffer.hpp"
+#include "Memory/HeapByteBuffer.hpp"
 #include "Memory/linkoptions.hpp"
 #include "Memory/Word.hpp"
 
