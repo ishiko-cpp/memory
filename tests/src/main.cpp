@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
+#include "AlignedByteBufferTests.hpp"
 #include "BigEndianWordTests.hpp"
 #include "ByteBufferPoolTests.hpp"
 #include "ByteBufferTests.hpp"
@@ -21,6 +22,7 @@ int main(int argc, char* argv[])
     theTests.append<WordTests>();
     theTests.append<BigEndianWordTests>();
     theTests.append<ByteBufferTests>();
+    theTests.append<AlignedByteBufferTests>();
     theTests.append<ByteBufferPoolTests>();
     theTests.append<FixedBufferTests>();
 

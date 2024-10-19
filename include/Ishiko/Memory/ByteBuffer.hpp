@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
 #ifndef GUARD_ISHIKO_CPP_MEMORY_BYTEBUFFER_HPP
@@ -33,7 +33,7 @@ namespace Ishiko
 
         const Byte* data() const noexcept;
         Byte* data() noexcept;
-        size_t capacity() noexcept;
+        size_t capacity() const noexcept;
 
         void copyTo(Byte* buffer) const noexcept;
 
@@ -45,9 +45,11 @@ namespace Ishiko
         bool operator==(const ByteBuffer& other) const noexcept;
         bool operator!=(const ByteBuffer& other) const noexcept;
 
-    private:
-        Byte* m_data{nullptr};
-        size_t m_capacity{0};
+    protected:
+        ByteBuffer();
+
+        Byte* m_data = nullptr;
+        size_t m_capacity = 0;
     };
 }
 

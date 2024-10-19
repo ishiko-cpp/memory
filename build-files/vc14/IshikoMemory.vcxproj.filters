@@ -20,6 +20,9 @@
     <ClInclude Include="..\..\include\Ishiko\Memory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Memory\AlignedByteBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Memory\BigEndianWord.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -17,6 +17,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\AlignedByteBufferTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\BigEndianWordTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,6 +40,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\AlignedByteBufferTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\BigEndianWordTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
