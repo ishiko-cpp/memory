@@ -4,10 +4,8 @@
 #ifndef GUARD_ISHIKO_CPP_MEMORY_HEAPBYTEBUFFER_HPP
 #define GUARD_ISHIKO_CPP_MEMORY_HEAPBYTEBUFFER_HPP
 
-#include "BigEndianWord.hpp"
 #include "Byte.hpp"
 #include "ByteBuffer.hpp"
-#include "Word.hpp"
 #include <cstddef>
 
 namespace Ishiko
@@ -27,13 +25,6 @@ namespace Ishiko
         HeapByteBuffer& operator=(HeapByteBuffer&& other);
 
         static HeapByteBuffer From(const Byte* bytes, size_t count);
-
-        void copyTo(Byte* buffer) const noexcept;
-
-        Word wordAt(size_t pos) const;
-        Word& wordAt(size_t pos);
-        BigEndianWord bigEndianWordAt(size_t pos) const;
-        BigEndianWord& bigEndianWordAt(size_t pos);
 
         bool operator==(const HeapByteBuffer& other) const noexcept;
         bool operator!=(const HeapByteBuffer& other) const noexcept;

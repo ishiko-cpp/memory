@@ -4,13 +4,9 @@
 #ifndef GUARD_ISHIKO_CPP_MEMORY_BYTEBUFFER_HPP
 #define GUARD_ISHIKO_CPP_MEMORY_BYTEBUFFER_HPP
 
-/*
 #include "BigEndianWord.hpp"
-*/
 #include "Byte.hpp"
-/*
 #include "Word.hpp"
-*/
 #include <cstddef>
 #include <cstring>
 
@@ -23,15 +19,10 @@ namespace Ishiko
     public:
         /*
         // TODO: size must be > 0
-        ByteBuffer(size_t capacity);
-        ByteBuffer(const ByteBuffer& other);
         ByteBuffer(ByteBuffer&& other) noexcept;
-        ~ByteBuffer();
 
         ByteBuffer& operator=(const ByteBuffer& other);
-        ByteBuffer& operator=(ByteBuffer&& other);
-
-        static ByteBuffer From(const Byte* bytes, size_t count);*/
+        ByteBuffer& operator=(ByteBuffer&& other);*/
 
         inline void zero() noexcept;
 
@@ -41,19 +32,21 @@ namespace Ishiko
         inline Byte* data() noexcept;
         inline size_t capacity() const noexcept;
 
+        inline void copyTo(Byte* buffer) const noexcept;
+
+        inline Word wordAt(size_t pos) const;
+        inline Word& wordAt(size_t pos);
+        inline BigEndianWord bigEndianWordAt(size_t pos) const;
+        inline BigEndianWord& bigEndianWordAt(size_t pos);
+
         /*
-        void copyTo(Byte* buffer) const noexcept;
-
-        Word wordAt(size_t pos) const;
-        Word& wordAt(size_t pos);
-        BigEndianWord bigEndianWordAt(size_t pos) const;
-        BigEndianWord& bigEndianWordAt(size_t pos);
-
         bool operator==(const ByteBuffer& other) const noexcept;
         bool operator!=(const ByteBuffer& other) const noexcept;
         */
     protected:
-       // ByteBuffer();
+        ByteBuffer() noexcept = default;
+        ByteBuffer(const ByteBuffer& other) noexcept = default;
+        ~ByteBuffer() noexcept = default;
 
         Byte* m_data = nullptr;
         size_t m_capacity = 0;
@@ -83,6 +76,35 @@ Ishiko::Byte* Ishiko::ByteBuffer::data() noexcept
 size_t Ishiko::ByteBuffer::capacity() const noexcept
 {
     return m_capacity;
+}
+
+void Ishiko::ByteBuffer::copyTo(Byte* buffer) const noexcept
+{
+    memcpy(buffer, m_data, m_capacity);
+}
+
+Ishiko::Word Ishiko::ByteBuffer::wordAt(size_t pos) const
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<const Word*>(m_data + pos));
+}
+
+Ishiko::Word& Ishiko::ByteBuffer::wordAt(size_t pos)
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<Word*>(m_data + pos));
+}
+
+Ishiko::BigEndianWord Ishiko::ByteBuffer::bigEndianWordAt(size_t pos) const
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
+}
+
+Ishiko::BigEndianWord& Ishiko::ByteBuffer::bigEndianWordAt(size_t pos)
+{
+    // TOOD: out of bounds check
+    return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
 }
 
 #endif

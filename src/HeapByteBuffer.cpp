@@ -68,35 +68,6 @@ HeapByteBuffer::~HeapByteBuffer()
     free(m_data);
 }
 
-void HeapByteBuffer::copyTo(Byte* buffer) const noexcept
-{
-    memcpy(buffer, m_data, m_capacity);
-}
-
-Word HeapByteBuffer::wordAt(size_t pos) const
-{
-    // TOOD: out of bounds check
-    return *(reinterpret_cast<const Word*>(m_data + pos));
-}
-
-Word& HeapByteBuffer::wordAt(size_t pos)
-{
-    // TOOD: out of bounds check
-    return *(reinterpret_cast<Word*>(m_data + pos));
-}
-
-BigEndianWord HeapByteBuffer::bigEndianWordAt(size_t pos) const
-{
-    // TOOD: out of bounds check
-    return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
-}
-
-BigEndianWord& HeapByteBuffer::bigEndianWordAt(size_t pos)
-{
-    // TOOD: out of bounds check
-    return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
-}
-
 bool HeapByteBuffer::operator==(const HeapByteBuffer& other) const noexcept
 {
     if (m_capacity != other.m_capacity)
