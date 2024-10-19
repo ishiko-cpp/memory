@@ -1,22 +1,24 @@
 // SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#ifndef GUARD_ISHIKO_CPP_MEMORY_FIXEDBYTEBUFFER_HPP
-#define GUARD_ISHIKO_CPP_MEMORY_FIXEDBYTEBUFFER_HPP
+#ifndef GUARD_ISHIKO_CPP_MEMORY_STACKBYTEBUFFER_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_STACKBYTEBUFFER_HPP
 
 #include "BigEndianWord.hpp"
 #include "Byte.hpp"
+#include "ByteBufferRef.hpp"
 #include "Word.hpp"
 #include <cstring>
 
 namespace Ishiko
 {
     // TODO: same as Buffer but fixed size and on the stack
+    // TODO: not necessarily on the stack, could be inline in a class but it was the best name I could come up with
     template<size_t N>
-    class FixedByteBuffer
+    class StackByteBuffer
     {
     public:
-        static FixedByteBuffer<N> From(const Byte* bytes);
+        static StackByteBuffer<N> From(const Byte* bytes);
 
         void zero() noexcept;
 
@@ -32,15 +34,17 @@ namespace Ishiko
         BigEndianWord bigEndianWordAt(size_t pos) const;
         BigEndianWord& bigEndianWordAt(size_t pos);
 
-        bool operator==(const FixedByteBuffer<N>& other) const noexcept;
-        bool operator!=(const FixedByteBuffer<N>& other) const noexcept;
+        bool operator==(const StackByteBuffer<N>& other) const noexcept;
+        bool operator!=(const StackByteBuffer<N>& other) const noexcept;
+
+        ByteBufferRef asByteBuffer() noexcept;
 
     private:
         Byte m_data[N];
     };
 
     template<size_t N>
-    FixedByteBuffer<N> FixedByteBuffer<N>::From(const Byte* bytes)
+    StackByteBuffer<N> StackByteBuffer<N>::From(const Byte* bytes)
     {
         FixedByteBuffer<N> result;
         memcpy(result.m_data, bytes, N);
@@ -48,73 +52,79 @@ namespace Ishiko
     }
 
     template<size_t N>
-    void FixedByteBuffer<N>::zero() noexcept
+    void StackByteBuffer<N>::zero() noexcept
     {
         memset(m_data, 0, N);
     }
 
     template<size_t N>
-    Byte FixedByteBuffer<N>::operator[](size_t pos) const noexcept
+    Byte StackByteBuffer<N>::operator[](size_t pos) const noexcept
     {
         return m_data[pos];
     }
 
     template<size_t N>
-    Byte* FixedByteBuffer<N>::data() noexcept
+    Byte* StackByteBuffer<N>::data() noexcept
     {
         return m_data;
     }
 
     template<size_t N>
-    size_t FixedByteBuffer<N>::capacity() noexcept
+    size_t StackByteBuffer<N>::capacity() noexcept
     {
         return N;
     }
 
     template<size_t N>
-    void FixedByteBuffer<N>::copyTo(Byte* buffer) const noexcept
+    void StackByteBuffer<N>::copyTo(Byte* buffer) const noexcept
     {
         memcpy(buffer, m_data, N);
     }
 
     template<size_t N>
-    Word FixedByteBuffer<N>::wordAt(size_t pos) const
+    Word StackByteBuffer<N>::wordAt(size_t pos) const
     {
         // TOOD: out of bounds check
         return *(reinterpret_cast<const Word*>(m_data + pos));
     }
 
     template<size_t N>
-    Word& FixedByteBuffer<N>::wordAt(size_t pos)
+    Word& StackByteBuffer<N>::wordAt(size_t pos)
     {
         // TOOD: out of bounds check
         return *(reinterpret_cast<Word*>(m_data + pos));
     }
 
     template<size_t N>
-    BigEndianWord FixedByteBuffer<N>::bigEndianWordAt(size_t pos) const
+    BigEndianWord StackByteBuffer<N>::bigEndianWordAt(size_t pos) const
     {
         // TOOD: out of bounds check
         return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
     }
 
     template<size_t N>
-    BigEndianWord& FixedByteBuffer<N>::bigEndianWordAt(size_t pos)
+    BigEndianWord& StackByteBuffer<N>::bigEndianWordAt(size_t pos)
     {
         // TOOD: out of bounds check
         return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
     }
 
     template<size_t N>
-    bool FixedByteBuffer<N>::operator==(const FixedByteBuffer<N>& other) const noexcept
+    bool StackByteBuffer<N>::operator==(const StackByteBuffer<N>& other) const noexcept
     {
         return (memcmp(m_data, other.m_data, N) == 0);
     }
 
     template<size_t N>
-    bool FixedByteBuffer<N>::operator!=(const FixedByteBuffer<N>& other) const noexcept
+    bool StackByteBuffer<N>::operator!=(const StackByteBuffer<N>& other) const noexcept
     {
         return (memcmp(m_data, other.m_data, N) != 0);
+    }
+
+    template<size_t N>
+    ByteBufferRef StackByteBuffer<N>::asByteBuffer() noexcept
+    {
+        return ByteBufferRef(m_data, N);
     }
 }
 
