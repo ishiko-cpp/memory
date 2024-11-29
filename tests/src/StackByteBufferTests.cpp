@@ -14,6 +14,7 @@ StackByteBufferTests::StackByteBufferTests(const TestNumber& number, const TestC
     append<HeapAllocationErrorsTest>("wordAt test 1", WordAtTest1);
     append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
     append<HeapAllocationErrorsTest>("asByteBuffer test 1", AsByteBufferTest1);
+    append<HeapAllocationErrorsTest>("toHexStringTest1 test 1", ToHexStringTest1);
 }
 
 void StackByteBufferTests::ConstructorTest1(Test& test)
@@ -81,5 +82,13 @@ void StackByteBufferTests::AsByteBufferTest1(Test& test)
 
     ISHIKO_TEST_FAIL_IF_NEQ(byte_buffer.data(), buffer.data());
     ISHIKO_TEST_FAIL_IF_NEQ(byte_buffer.capacity(), buffer.capacity());
+    ISHIKO_TEST_PASS();
+}
+
+void StackByteBufferTests::ToHexStringTest1(Test& test)
+{
+    StackByteBuffer<10> buffer = StackByteBuffer<10>::From((Byte*)"0123456z\x0\x1");
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.toHexString(), "303132333435367a0001");
     ISHIKO_TEST_PASS();
 }

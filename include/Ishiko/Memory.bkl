@@ -1,5 +1,6 @@
 ishikopath = envvar("ISHIKO_CPP_ROOT");
 import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/fmt.bkl;
 
 setting ISHIKO_CPP_MEMORY_ROOT
 {
@@ -7,7 +8,7 @@ setting ISHIKO_CPP_MEMORY_ROOT
     default = '$(ISHIKO_CPP_ROOT)/memory';
 }
 
-template IshikoMemory : IshikoErrors
+template IshikoMemory : IshikoErrors, fmt
 {
     includedirs += $(ISHIKO_CPP_MEMORY_ROOT)/include;
 
