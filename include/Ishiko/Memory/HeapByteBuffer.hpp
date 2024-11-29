@@ -7,6 +7,7 @@
 #include "Byte.hpp"
 #include "ByteBuffer.hpp"
 #include <cstddef>
+#include <string>
 
 namespace Ishiko
 {
@@ -25,6 +26,8 @@ namespace Ishiko
         HeapByteBuffer& operator=(HeapByteBuffer&& other);
 
         static HeapByteBuffer From(const Byte* bytes, size_t count);
+
+        std::string toHexString() const;
     };
 }
 

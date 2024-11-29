@@ -8,7 +8,10 @@
 #include "Byte.hpp"
 #include "ByteBufferRef.hpp"
 #include "Word.hpp"
+#include <fmt/format.h>
+#include <fmt/ranges.h>
 #include <cstring>
+#include <string>
 
 namespace Ishiko
 {
@@ -38,6 +41,8 @@ namespace Ishiko
         bool operator!=(const StackByteBuffer<N>& other) const noexcept;
 
         ByteBufferRef asByteBuffer() noexcept;
+
+        std::string toHexString() const;
 
     private:
         Byte m_data[N];
@@ -125,6 +130,12 @@ namespace Ishiko
     ByteBufferRef StackByteBuffer<N>::asByteBuffer() noexcept
     {
         return ByteBufferRef(m_data, N);
+    }
+
+    template<size_t N>
+    std::string StackByteBuffer<N>::toHexString() const
+    {
+        return fmt::format("{:02x}", fmt::join(m_data, ""));
     }
 }
 

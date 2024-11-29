@@ -39,6 +39,7 @@ endif
 #
 #      ISHIKO_CPP_BASEPLATFORM_ROOT  Path to the Ishiko/C++ BasePlatform installation
 #      ISHIKO_CPP_ERRORS_ROOT        Path to the Ishiko/C++ Errors installation
+#      ISHIKO_CPP_FMT_ROOT           Path to the fmt installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -69,6 +70,8 @@ endif
 ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP_ROOT)/base-platform
 # Path to the Ishiko/C++ Errors installation
 ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP_ROOT)/errors
+# Path to the fmt installation
+ISHIKO_CPP_FMT_ROOT ?= $(FMT_ROOT)
 
 # ------------
 
@@ -79,13 +82,13 @@ all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d
 	$(RANLIB) $@
 
 $(_builddir)IshikoMemory_ByteBufferPool.o: ../../src/ByteBufferPool.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/ByteBufferPool.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/ByteBufferPool.cpp
 
 $(_builddir)IshikoMemory_HeapByteBuffer.o: ../../src/HeapByteBuffer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/HeapByteBuffer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/HeapByteBuffer.cpp
 
 $(_builddir)IshikoMemory_MemoryErrorCategory.o: ../../src/MemoryErrorCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/MemoryErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/MemoryErrorCategory.cpp
 
 clean:
 	rm -f $(_builddir)*.o

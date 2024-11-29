@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: BSL-1.0
 
 #include "HeapByteBuffer.hpp"
+#include <fmt/format.h>
+#include <fmt/ranges.h>
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
@@ -66,4 +68,9 @@ HeapByteBuffer HeapByteBuffer::From(const Byte* bytes, size_t count)
 HeapByteBuffer::~HeapByteBuffer()
 {
     free(m_data);
+}
+
+std::string HeapByteBuffer::toHexString() const
+{
+    return fmt::format("{:02x}", fmt::join(m_data, (m_data + m_capacity), ""));
 }
