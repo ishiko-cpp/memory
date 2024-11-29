@@ -9,6 +9,7 @@
 #include "ByteBufferRef.hpp"
 #include "Word.hpp"
 #include <fmt/format.h>
+#include <fmt/ranges.h>
 #include <cstring>
 #include <string>
 

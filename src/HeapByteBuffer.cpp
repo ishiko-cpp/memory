@@ -3,6 +3,7 @@
 
 #include "HeapByteBuffer.hpp"
 #include <fmt/format.h>
+#include <fmt/ranges.h>
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
