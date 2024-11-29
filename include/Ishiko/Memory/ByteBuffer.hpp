@@ -7,8 +7,11 @@
 #include "BigEndianWord.hpp"
 #include "Byte.hpp"
 #include "Word.hpp"
+#include <fmt/format.h>
+#include <fmt/ranges.h>
 #include <cstddef>
 #include <cstring>
+#include <string>
 
 namespace Ishiko
 {
@@ -41,6 +44,8 @@ namespace Ishiko
 
         inline bool operator==(const ByteBuffer& other) const noexcept;
         inline bool operator!=(const ByteBuffer& other) const noexcept;
+
+        inline std::string toHexString() const;
 
     protected:
         ByteBuffer() noexcept = default;
@@ -128,6 +133,11 @@ bool Ishiko::ByteBuffer::operator!=(const ByteBuffer& other) const noexcept
     {
         return (memcmp(m_data, other.m_data, m_capacity) != 0);
     }
+}
+
+std::string Ishiko::ByteBuffer::toHexString() const
+{
+    return fmt::format("{:02x}", fmt::join(m_data, (m_data + m_capacity), ""));
 }
 
 #endif
