@@ -82,13 +82,13 @@ all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoMemory-d
 	$(RANLIB) $@
 
 $(_builddir)IshikoMemory_ByteBufferPool.o: ../../src/ByteBufferPool.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/ByteBufferPool.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++14 ../../src/ByteBufferPool.cpp
 
 $(_builddir)IshikoMemory_HeapByteBuffer.o: ../../src/HeapByteBuffer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/HeapByteBuffer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++14 ../../src/HeapByteBuffer.cpp
 
 $(_builddir)IshikoMemory_MemoryErrorCategory.o: ../../src/MemoryErrorCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++11 ../../src/MemoryErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I../../include/Ishiko/Memory -std=c++14 ../../src/MemoryErrorCategory.cpp
 
 clean:
 	rm -f $(_builddir)*.o
