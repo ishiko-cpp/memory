@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2005-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
 #ifndef GUARD_ISHIKO_CPP_MEMORY_HPP
@@ -12,7 +12,7 @@
 #include "Memory/ByteBufferRef.hpp"
 #include "Memory/DefaultAllocator.hpp"
 #include "Memory/HeapByteBuffer.hpp"
-#include "Memory/StackByteBuffer.hpp"
+#include "Memory/InplaceByteBuffer.hpp"
 #include "Memory/linkoptions.hpp"
 #include "Memory/Word.hpp"
 
