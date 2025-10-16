@@ -36,8 +36,8 @@ namespace Ishiko
         BigEndianWord bigEndianWordAt(size_t pos) const;
         BigEndianWord& bigEndianWordAt(size_t pos);
 
-        bool operator==(const StackByteBuffer<N>& other) const noexcept;
-        bool operator!=(const StackByteBuffer<N>& other) const noexcept;
+        bool operator==(const InplaceByteBuffer<N>& other) const noexcept;
+        bool operator!=(const InplaceByteBuffer<N>& other) const noexcept;
 
         ByteBufferRef asByteBuffer() noexcept;
 
