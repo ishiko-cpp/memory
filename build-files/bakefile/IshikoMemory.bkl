@@ -43,9 +43,9 @@ library IshikoMemory : IshikoErrors, fmt
         ../../include/Ishiko/Memory/Byte.hpp
         ../../include/Ishiko/Memory/DefaultAllocator.hpp
         ../../include/Ishiko/Memory/HeapByteBuffer.hpp
+        ../../include/Ishiko/Memory/InplaceByteBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
         ../../include/Ishiko/Memory/MemoryErrorCategory.hpp
-        ../../include/Ishiko/Memory/StackByteBuffer.hpp
         ../../include/Ishiko/Memory/Word.hpp
     }
 
