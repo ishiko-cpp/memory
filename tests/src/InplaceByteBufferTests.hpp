@@ -1,15 +1,15 @@
-// SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2005-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#ifndef GUARD_ISHIKO_CPP_MEMORY_TESTS_STACKBYTEBUFFERTESTS_HPP
-#define GUARD_ISHIKO_CPP_MEMORY_TESTS_STACKBYTEBUFFERTESTS_HPP
+#ifndef GUARD_ISHIKO_CPP_MEMORY_TESTS_INPLACEBYTEBUFFERTESTS_HPP
+#define GUARD_ISHIKO_CPP_MEMORY_TESTS_INPLACEBYTEBUFFERTESTS_HPP
 
 #include <Ishiko/TestFramework/Core.hpp>
 
-class StackByteBufferTests : public Ishiko::TestSequence
+class InplaceByteBufferTests : public Ishiko::TestSequence
 {
 public:
-    StackByteBufferTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
+    InplaceByteBufferTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);

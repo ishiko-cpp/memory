@@ -6,7 +6,7 @@
 #include "ByteBufferPoolTests.hpp"
 #include "DefaultAllocatorTests.hpp"
 #include "HeapByteBufferTests.hpp"
-#include "StackByteBufferTests.hpp"
+#include "InplaceByteBufferTests.hpp"
 #include "WordTests.hpp"
 #include "Ishiko/Memory/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     theTests.append<HeapByteBufferTests>();
     theTests.append<AlignedHeapByteBufferTests>();
     theTests.append<ByteBufferPoolTests>();
-    theTests.append<StackByteBufferTests>();
+    theTests.append<InplaceByteBufferTests>();
 
     return theTestHarness.run();
 }
