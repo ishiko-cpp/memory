@@ -1,13 +1,13 @@
-// SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2005-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#include "StackByteBufferTests.hpp"
-#include "Ishiko/Memory/StackByteBuffer.hpp"
+#include "InplaceByteBufferTests.hpp"
+#include "Ishiko/Memory/InplaceByteBuffer.hpp"
 
 using namespace Ishiko;
 
-StackByteBufferTests::StackByteBufferTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "StackByteBuffer tests", context)
+InplaceByteBufferTests::InplaceByteBufferTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "InplaceByteBuffer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("zero test 1", ZeroTest1);
@@ -17,17 +17,17 @@ StackByteBufferTests::StackByteBufferTests(const TestNumber& number, const TestC
     append<HeapAllocationErrorsTest>("toHexStringTest1 test 1", ToHexStringTest1);
 }
 
-void StackByteBufferTests::ConstructorTest1(Test& test)
+void InplaceByteBufferTests::ConstructorTest1(Test& test)
 {
-    StackByteBuffer<10> buffer;
+    InplaceByteBuffer<10> buffer;
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.capacity(), 10);
     ISHIKO_TEST_PASS();
 }
 
-void StackByteBufferTests::ZeroTest1(Test& test)
+void InplaceByteBufferTests::ZeroTest1(Test& test)
 {
-    StackByteBuffer<10> buffer;
+    InplaceByteBuffer<10> buffer;
 
     buffer.zero();
 
@@ -41,9 +41,9 @@ void StackByteBufferTests::ZeroTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void StackByteBufferTests::WordAtTest1(Test& test)
+void InplaceByteBufferTests::WordAtTest1(Test& test)
 {
-    StackByteBuffer<10> buffer;
+    InplaceByteBuffer<10> buffer;
     buffer.zero();
 
     buffer.wordAt(0) = 128;
@@ -58,9 +58,9 @@ void StackByteBufferTests::WordAtTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void StackByteBufferTests::BigEndianWordAtTest1(Test& test)
+void InplaceByteBufferTests::BigEndianWordAtTest1(Test& test)
 {
-    StackByteBuffer<10> buffer;
+    InplaceByteBuffer<10> buffer;
     buffer.zero();
 
     buffer.bigEndianWordAt(0) = 128;
@@ -75,9 +75,9 @@ void StackByteBufferTests::BigEndianWordAtTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void StackByteBufferTests::AsByteBufferTest1(Test& test)
+void InplaceByteBufferTests::AsByteBufferTest1(Test& test)
 {
-    StackByteBuffer<10> buffer;
+    InplaceByteBuffer<10> buffer;
     ByteBufferRef byte_buffer = buffer.asByteBuffer();
 
     ISHIKO_TEST_FAIL_IF_NEQ(byte_buffer.data(), buffer.data());
@@ -85,9 +85,9 @@ void StackByteBufferTests::AsByteBufferTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void StackByteBufferTests::ToHexStringTest1(Test& test)
+void InplaceByteBufferTests::ToHexStringTest1(Test& test)
 {
-    StackByteBuffer<10> buffer = StackByteBuffer<10>::From((Byte*)"0123456z\x0\x1");
+    InplaceByteBuffer<10> buffer = InplaceByteBuffer<10>::From((Byte*)"0123456z\x0\x1");
 
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.toHexString(), "303132333435367a0001");
     ISHIKO_TEST_PASS();

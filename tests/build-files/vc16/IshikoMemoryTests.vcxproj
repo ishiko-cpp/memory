@@ -165,8 +165,8 @@
     <ClCompile Include="..\..\src\ByteBufferPoolTests.cpp" />
     <ClCompile Include="..\..\src\DefaultAllocatorTests.cpp" />
     <ClCompile Include="..\..\src\HeapByteBufferTests.cpp" />
+    <ClCompile Include="..\..\src\InplaceByteBufferTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
-    <ClCompile Include="..\..\src\StackByteBufferTests.cpp" />
     <ClCompile Include="..\..\src\WordTests.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +175,7 @@
     <ClInclude Include="..\..\src\ByteBufferPoolTests.hpp" />
     <ClInclude Include="..\..\src\DefaultAllocatorTests.hpp" />
     <ClInclude Include="..\..\src\HeapByteBufferTests.hpp" />
-    <ClInclude Include="..\..\src\StackByteBufferTests.hpp" />
+    <ClInclude Include="..\..\src\InplaceByteBufferTests.hpp" />
     <ClInclude Include="..\..\src\WordTests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
