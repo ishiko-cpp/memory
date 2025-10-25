@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2005-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2005-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
 #include "AlignedHeapByteBufferTests.hpp"
@@ -7,6 +7,7 @@
 #include "DefaultAllocatorTests.hpp"
 #include "HeapByteBufferTests.hpp"
 #include "InplaceByteBufferTests.hpp"
+#include "InplaceOctetBufferTests.hpp"
 #include "WordTests.hpp"
 #include "Ishiko/Memory/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
@@ -25,6 +26,7 @@ int main(int argc, char* argv[])
     theTests.append<AlignedHeapByteBufferTests>();
     theTests.append<ByteBufferPoolTests>();
     theTests.append<InplaceByteBufferTests>();
+    theTests.append<InplaceOctetBufferTests>();
 
     return theTestHarness.run();
 }

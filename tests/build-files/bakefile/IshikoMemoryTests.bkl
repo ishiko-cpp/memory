@@ -33,6 +33,7 @@ program IshikoMemoryTests : IshikoMemory, IshikoTestFrameworkCore
         ../../src/DefaultAllocatorTests.hpp
         ../../src/HeapByteBufferTests.hpp
         ../../src/InplaceByteBufferTests.hpp
+        ../../src/InplaceOctetBufferTests.hpp
         ../../src/WordTests.hpp
     }
 
@@ -44,6 +45,7 @@ program IshikoMemoryTests : IshikoMemory, IshikoTestFrameworkCore
         ../../src/DefaultAllocatorTests.cpp
         ../../src/HeapByteBufferTests.cpp
         ../../src/InplaceByteBufferTests.cpp
+        ../../src/InplaceOctetBufferTests.cpp
         ../../src/main.cpp
         ../../src/WordTests.cpp
     }

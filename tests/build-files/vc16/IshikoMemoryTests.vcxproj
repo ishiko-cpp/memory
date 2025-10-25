@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\src\DefaultAllocatorTests.cpp" />
     <ClCompile Include="..\..\src\HeapByteBufferTests.cpp" />
     <ClCompile Include="..\..\src\InplaceByteBufferTests.cpp" />
+    <ClCompile Include="..\..\src\InplaceOctetBufferTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\WordTests.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="..\..\src\DefaultAllocatorTests.hpp" />
     <ClInclude Include="..\..\src\HeapByteBufferTests.hpp" />
     <ClInclude Include="..\..\src\InplaceByteBufferTests.hpp" />
+    <ClInclude Include="..\..\src\InplaceOctetBufferTests.hpp" />
     <ClInclude Include="..\..\src\WordTests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
