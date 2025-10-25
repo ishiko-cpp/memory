@@ -46,6 +46,7 @@ library IshikoMemory : IshikoErrors, fmt
         ../../include/Ishiko/Memory/InplaceByteBuffer.hpp
         ../../include/Ishiko/Memory/linkoptions.hpp
         ../../include/Ishiko/Memory/MemoryErrorCategory.hpp
+        ../../include/Ishiko/Memory/Octet.hpp
         ../../include/Ishiko/Memory/OctetBuffer.hpp
         ../../include/Ishiko/Memory/OctetBufferRef.hpp
         ../../include/Ishiko/Memory/InplaceOctetBuffer.hpp

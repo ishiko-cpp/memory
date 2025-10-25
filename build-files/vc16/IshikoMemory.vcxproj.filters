@@ -53,6 +53,9 @@
     <ClInclude Include="..\..\include\Ishiko\Memory\MemoryErrorCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Memory\Octet.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Memory\OctetBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
