@@ -13,7 +13,11 @@
 #include "Memory/DefaultAllocator.hpp"
 #include "Memory/HeapByteBuffer.hpp"
 #include "Memory/InplaceByteBuffer.hpp"
+#include "Memory/InplaceOctetBuffer.hpp"
 #include "Memory/linkoptions.hpp"
+#include "Memory/Octet.hpp"
+#include "Memory/OctetBuffer.hpp"
+#include "Memory/OctetBufferRef.hpp"
 #include "Memory/Word.hpp"
 
 #endif

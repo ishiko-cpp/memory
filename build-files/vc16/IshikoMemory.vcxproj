@@ -171,6 +171,10 @@
     <ClInclude Include="..\..\include\Ishiko\Memory\InplaceByteBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\linkoptions.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\MemoryErrorCategory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\Octet.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\OctetBuffer.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\OctetBufferRef.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Memory\InplaceOctetBuffer.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Memory\Word.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
