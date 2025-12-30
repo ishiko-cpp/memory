@@ -4,7 +4,7 @@
 #ifndef GUARD_ISHIKO_CPP_MEMORY_OCTETBUFFER_HPP
 #define GUARD_ISHIKO_CPP_MEMORY_OCTETBUFFER_HPP
 
-#include "Byte.hpp"
+#include "Octet.hpp"
 
 namespace Ishiko
 {
@@ -12,6 +12,9 @@ namespace Ishiko
     // a memcpy or similar operations. In particular no alignment guarantees.
     class OctetBuffer
     {
+    public:
+        inline Octet operator[](size_t pos) const noexcept;
+
     protected:
         OctetBuffer() noexcept = default;
         OctetBuffer(const OctetBuffer& other) noexcept = default;
@@ -20,6 +23,11 @@ namespace Ishiko
         Octet* m_data = nullptr;
         size_t m_capacity = 0;
     };
+}
+
+Ishiko::Octet Ishiko::OctetBuffer::operator[](size_t pos) const noexcept
+{
+    return m_data[pos];
 }
 
 #endif
