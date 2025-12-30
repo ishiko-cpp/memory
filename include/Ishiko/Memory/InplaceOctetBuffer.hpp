@@ -15,6 +15,8 @@ namespace Ishiko
     public:
         void zero() noexcept;
 
+        Octet operator[](size_t pos) const noexcept;
+
         Octet* data() noexcept;
         size_t capacity() noexcept;
 
@@ -26,6 +28,12 @@ namespace Ishiko
     void InplaceOctetBuffer<N>::zero() noexcept
     {
         memset(m_data, 0, N);
+    }
+
+    template<size_t N>
+    Octet InplaceOctetBuffer<N>::operator[](size_t pos) const noexcept
+    {
+        return m_data[pos];
     }
 
     template<size_t N>
