@@ -11,6 +11,7 @@ InplaceOctetBufferTests::InplaceOctetBufferTests(const TestNumber& number, const
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("zero test 1", ZeroTest1);
+    append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
 }
 
 void InplaceOctetBufferTests::ConstructorTest1(Test& test)
@@ -34,5 +35,22 @@ void InplaceOctetBufferTests::ZeroTest1(Test& test)
         ISHIKO_TEST_FAIL_IF_NEQ(buffer.data()[i], 0);
     }
 
+    ISHIKO_TEST_PASS();
+}
+
+void InplaceOctetBufferTests::BigEndianWordAtTest1(Test& test)
+{
+    InplaceOctetBuffer<10> buffer;
+    buffer.zero();
+
+    buffer.bigEndianWordAt(0) = 128;
+    buffer.bigEndianWordAt(2) = 255;
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.bigEndianWordAt(0), 128);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[0], 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[1], 128);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.bigEndianWordAt(2), 255);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[2], 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer[3], 255);
     ISHIKO_TEST_PASS();
 }
