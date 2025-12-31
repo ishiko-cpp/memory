@@ -13,6 +13,8 @@ namespace Ishiko
     class InplaceOctetBuffer
     {
     public:
+        static InplaceOctetBuffer<N> From(const Octet* octets);
+
         void zero() noexcept;
 
         Octet operator[](size_t pos) const noexcept;
@@ -20,9 +22,25 @@ namespace Ishiko
         Octet* data() noexcept;
         size_t capacity() noexcept;
 
+        void copyTo(Octet* buffer) const noexcept;
+
+        BigEndianWord bigEndianWordAt(size_t pos) const;
+        BigEndianWord& bigEndianWordAt(size_t pos);
+
+        bool operator==(const InplaceOctetBuffer<N>& other) const noexcept;
+        bool operator!=(const InplaceOctetBuffer<N>& other) const noexcept;
+
     private:
         Octet m_data[N];
     };
+
+    template<size_t N>
+    InplaceOctetBuffer<N> InplaceOctetBuffer<N>::From(const Octet* octets)
+    {
+        InplaceOctetBuffer<N> result;
+        memcpy(result.m_data, octets, N);
+        return result;
+    }
 
     template<size_t N>
     void InplaceOctetBuffer<N>::zero() noexcept
@@ -46,6 +64,38 @@ namespace Ishiko
     size_t InplaceOctetBuffer<N>::capacity() noexcept
     {
         return N;
+    }
+
+    template<size_t N>
+    void InplaceOctetBuffer<N>::copyTo(Octet* buffer) const noexcept
+    {
+        memcpy(buffer, m_data, N);
+    }
+
+    template<size_t N>
+    BigEndianWord InplaceOctetBuffer<N>::bigEndianWordAt(size_t pos) const
+    {
+        // TOOD: out of bounds check
+        return *(reinterpret_cast<const BigEndianWord*>(m_data + pos));
+    }
+
+    template<size_t N>
+    BigEndianWord& InplaceOctetBuffer<N>::bigEndianWordAt(size_t pos)
+    {
+        // TOOD: out of bounds check
+        return *(reinterpret_cast<BigEndianWord*>(m_data + pos));
+    }
+    
+    template<size_t N>
+    bool InplaceOctetBuffer<N>::operator==(const InplaceOctetBuffer<N>& other) const noexcept
+    {
+        return (memcmp(m_data, other.m_data, N) == 0);
+    }
+
+    template<size_t N>
+    bool InplaceOctetBuffer<N>::operator!=(const InplaceOctetBuffer<N>& other) const noexcept
+    {
+        return (memcmp(m_data, other.m_data, N) != 0);
     }
 }
 
