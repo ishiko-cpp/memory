@@ -30,6 +30,8 @@ namespace Ishiko
         bool operator==(const InplaceOctetBuffer<N>& other) const noexcept;
         bool operator!=(const InplaceOctetBuffer<N>& other) const noexcept;
 
+        std::string toHexString() const;
+
     private:
         Octet m_data[N];
     };
@@ -96,6 +98,12 @@ namespace Ishiko
     bool InplaceOctetBuffer<N>::operator!=(const InplaceOctetBuffer<N>& other) const noexcept
     {
         return (memcmp(m_data, other.m_data, N) != 0);
+    }
+
+    template<size_t N>
+    std::string InplaceOctetBuffer<N>::toHexString() const
+    {
+        return fmt::format("{:02x}", fmt::join(m_data, ""));
     }
 }
 
