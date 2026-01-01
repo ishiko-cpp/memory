@@ -12,6 +12,7 @@ InplaceOctetBufferTests::InplaceOctetBufferTests(const TestNumber& number, const
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("zero test 1", ZeroTest1);
     append<HeapAllocationErrorsTest>("bigEndianWordAt test 1", BigEndianWordAtTest1);
+    append<HeapAllocationErrorsTest>("toHexStringTest1 test 1", ToHexStringTest1);
 }
 
 void InplaceOctetBufferTests::ConstructorTest1(Test& test)
@@ -52,5 +53,13 @@ void InplaceOctetBufferTests::BigEndianWordAtTest1(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(buffer.bigEndianWordAt(2), 255);
     ISHIKO_TEST_FAIL_IF_NEQ(buffer[2], 0);
     ISHIKO_TEST_FAIL_IF_NEQ(buffer[3], 255);
+    ISHIKO_TEST_PASS();
+}
+
+void InplaceOctetBufferTests::ToHexStringTest1(Test& test)
+{
+    InplaceOctetBuffer<10> buffer = InplaceOctetBuffer<10>::From((Byte*)"0123456z\x0\x1");
+
+    ISHIKO_TEST_FAIL_IF_NEQ(buffer.toHexString(), "303132333435367a0001");
     ISHIKO_TEST_PASS();
 }
