@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="https://nuime.org/schema/core/1">
+  <name>memory</name>
+  <targets>
+    <target>
+      <name>memory-lib</name>
+      <labels>
+        <label>nuime:product</label>
+      </labels>
+      <build-dependencies>
+        <dependency>
+          <name>errors</name>
+          <target-refs>
+            <target-ref>
+              <location>
+                <url>https://github.com/ishiko-cpp/errors/build-files/nuime/errors.nuime</url>
+              </location>
+              <name>errors-lib</name>
+            </target-ref>
+          </target-refs>
+        </dependency>
+      </build-dependencies>
+      <properties>
+        <property name="nuime:test-suite">
+          <target-ref>
+            <location>
+              <url>https://github.com/ishiko-cpp/memory/tests/build-files/nuime/memory-tests.nuime</url>
+            </location>
+            <name>memory-tests</name>
+          </target-ref>
+        </property>
+      </properties>
+    </target>
+  </targets>
+  <subprojects>
+    <subproject>
+      <name>memory-tests</name>
+      <labels>
+        <label>nuime:tests</label>
+      </labels>
+      <location>
+        <url>https://github.com/ishiko-cpp/memory/tests/build-files/nuime/memory-tests.nuime</url>
+      </location>
+    </subproject>
+  </subprojects>
+</project>
