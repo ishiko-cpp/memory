@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="https://nuime.org/schema/core/1">
-  <name>memory</name>
+  <name>IshikoMemory</name>
   <targets>
     <target>
-      <name>memory-lib</name>
+      <name>lib</name>
       <labels>
         <label>nuime:product</label>
       </labels>
       <build-dependencies>
         <dependency>
-          <name>errors</name>
+          <name>IshikoErrors</name>
           <target-refs>
             <target-ref>
               <location>
-                <url>https://github.com/ishiko-cpp/errors/build-files/nuime/errors.nuime</url>
+                <url>https://github.com/ishiko-cpp/errors/build-files/nuime/IshikoErrors.nuime</url>
               </location>
-              <name>errors-lib</name>
+              <name>lib</name>
             </target-ref>
           </target-refs>
         </dependency>
@@ -24,9 +24,9 @@
         <property name="nuime:test-suite">
           <target-ref>
             <location>
-              <url>https://github.com/ishiko-cpp/memory/tests/build-files/nuime/memory-tests.nuime</url>
+              <url>https://github.com/ishiko-cpp/memory/tests/build-files/nuime/IshikoMemoryTests.nuime</url>
             </location>
-            <name>memory-tests</name>
+            <name>tests</name>
           </target-ref>
         </property>
       </properties>
@@ -34,12 +34,12 @@
   </targets>
   <subprojects>
     <subproject>
-      <name>memory-tests</name>
+      <name>IshikoMemoryTests</name>
       <labels>
         <label>nuime:tests</label>
       </labels>
       <location>
-        <url>https://github.com/ishiko-cpp/memory/tests/build-files/nuime/memory-tests.nuime</url>
+        <url>https://github.com/ishiko-cpp/memory/tests/build-files/nuime/IshikoMemoryTests.nuime</url>
       </location>
     </subproject>
   </subprojects>
