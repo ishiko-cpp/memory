@@ -5,6 +5,11 @@
 
 using namespace Ishiko;
 
+MemoryErrorCategory::MemoryErrorCategory() noexcept
+    : ErrorCategory(ID(0x3134dae6257d4c30ULL, 0xa95178ef12ae9339ULL)) // 3134dae6-257d-4c30-a951-78ef12ae9339
+{
+}
+
 const MemoryErrorCategory& MemoryErrorCategory::Get() noexcept
 {
     static MemoryErrorCategory the_category;

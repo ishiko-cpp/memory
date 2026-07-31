@@ -23,7 +23,7 @@ namespace Ishiko
         const char* message(int ev, char* buffer, size_t len) const noexcept override;
 
     private:
-        MemoryErrorCategory() noexcept = default;
+        MemoryErrorCategory() noexcept;
     };
 
     void Fail(MemoryErrorCategory::Value value, const std::string& message, const char* file, int line,
